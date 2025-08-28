@@ -2,33 +2,93 @@
 
 API RESTful para o sistema de aluguel de carros **Move On**.
 
-## Visão Geral
+## Principais Tecnologias
 
-Esta API é a espinha dorsal do sistema Move On, responsável por toda a lógica de negócio relacionada ao aluguel de veículos. Ela foi desenvolvida como parte do treinamento "Desenvolvimento Full Stack" e serve como trabalho de conclusão de curso.
+- **Node.js**: Ambiente de execução JavaScript/TypeScript.
+- **TypeScript**: Tipagem estática para maior segurança e produtividade.
+- **Fastify**: Framework web rápido e eficiente para APIs.
+- **Prisma**: ORM moderno para gerenciamento do banco de dados MySQL.
+- **MySQL**: Banco de dados relacional utilizado pela aplicação.
+- **Zod**: Validação de dados e schemas.
+- **ESLint**: Padronização e análise de código.
 
-### Funcionalidades Principais:
+## Pré-requisitos
 
-* **Gerenciamento de Frota:** CRUD completo para veículos, incluindo informações como modelo, marca, ano, placa e status.
-* **Controle de Reservas:** Sistema para criar, consultar, atualizar e cancelar reservas.
-* **Cálculo de Tarifas:** Lógica para calcular o valor do aluguel com base no período e tipo de veículo.
-* **Histórico de Locações:** Registro de todas as locações passadas.
-* **Registro de Multas:** Sistema para registrar multas e taxas adicionais.
+- Node.js >= 18
+- MySQL >= 8
+- npm ou yarn
 
-## Tecnologias Utilizadas
+## Instalação
 
-(Aqui você listará as tecnologias que pretende usar no back-end, por exemplo: Node.js, Express.js, PostgreSQL, etc.)
+1. **Clone o repositório:**
+   ```bash
+   git clone https://github.com/jeas-github/car-rental-api.git
+   cd car-rental-api
+   ```
 
-## Como Rodar o Projeto
+2. **Instale as dependências:**
+   ```bash
+   npm install
+   ```
 
-(Instruções de como configurar e executar a API localmente. Por exemplo: `npm install`, `npm start` ou `docker-compose up`.)
+3. **Configure o banco de dados:**
+   - Crie um banco MySQL chamado `car-rental`.
+   - Edite o arquivo `.env` com suas credenciais:
+     ```
+     DATABASE_URL="mysql://usuario:senha@localhost:3306/car-rental"
+     ```
 
-## Endpoints da API
+4. **Execute as migrations do Prisma:**
+   ```bash
+   npx prisma migrate dev
+   ```
 
-Tabela com os principais endpoints, métodos HTTP e uma breve descrição. 
-Exemplo:
+5. **(Opcional) Abra o Prisma Studio para visualizar os dados:**
+   ```bash
+   npx prisma studio
+   ```
 
-| Método | Endpoint                | Descrição                      |
-| :----- | :---------------------- | :----------------------------- |
-| `GET`  | `/api/vehicles`         | Lista todos os veículos       |
-| `POST` | `/api/rentals`          | Cria uma nova locação          |
-| `PUT`  | `/api/rentals/{id}/return` | Finaliza uma locação         |
+## Principais Comandos
+
+- **Subir o servidor em modo desenvolvimento:**
+  ```bash
+  npm run start:dev
+  ```
+
+- **Rodar migrations do banco:**
+  ```bash
+  npx prisma migrate dev
+  ```
+
+- **Gerar o Prisma Client (após alterar o schema):**
+  ```bash
+  npx prisma generate
+  ```
+
+- **Padronizar e corrigir o código:**
+  ```bash
+  npm run lint:fix
+  ```
+
+## Estrutura do Projeto
+
+```
+src/
+  routes/         # Rotas da API (ex: cars.ts)
+  entities/       # Modelos de dados (se necessário)
+  server.ts       # Inicialização do servidor Fastify
+prisma/
+  schema.prisma   # Modelos e configuração do Prisma
+  migrations/     # Histórico das migrations
+.env              # Variáveis de ambiente
+```
+
+## Observações
+
+- O Prisma Client é gerado automaticamente em `node_modules/@prisma/client`.
+- Não é necessário versionar arquivos gerados pelo Prisma.
+- Para adicionar novos modelos, edite o `schema.prisma` e rode os comandos de migration e generate.
+
+## Licença
+
+Este projeto está sob a licença ISC.

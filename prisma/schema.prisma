@@ -1,0 +1,19 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Car {
+  id          String  @id @default(uuid())
+  plate       String  @unique
+  brand       String
+  model       String
+  year        Int
+  daily_price Decimal @db.Decimal(10, 2)
+
+  @@map("cars")
+}

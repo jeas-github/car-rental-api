@@ -17,3 +17,20 @@ model Car {
 
   @@map("cars")
 }
+
+model Customer {
+  id            String @id @default(uuid())
+  name          String
+  email         String @unique
+  password_hash String
+  created_at    DateTime @default(now())
+  updated_at    DateTime @updatedAt
+
+  @@map("customers")
+}
+
+model RentalLocation {
+  id      String @id @default(uuid())
+  name    String @unique
+  @@map("rental_locations")
+}

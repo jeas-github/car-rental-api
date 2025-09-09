@@ -36,7 +36,10 @@
     "typescript-eslint": "8.39.0"
   },
   "dependencies": {
+    "@adminjs/fastify": "4.2.0",
+    "@adminjs/prisma": "5.0.4",
     "@prisma/client": "6.15.0",
+    "adminjs": "7.8.17",
     "dotenv": "17.2.1",
     "fastify": "5.4.0",
     "mysql2": "3.14.3",

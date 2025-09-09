@@ -7,30 +7,109 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// Modelo: Cliente
+model Client {
+  clientId   String       @id @default(uuid())  @map("client_id")
+  name       String                             @map("name")
+  cpf        String       @unique               @map("cpf")
+  email      String       @unique               @map("email")
+  phone      String       @unique               @map("phone")
+  birthDate  DateTime                           @map("birth_date")
+  status     ClientStatus @default(ativo)       @map("status")
+  password   String                             @map("password")
+  createdAt  DateTime     @default(now())       @map("created_at")
+  updatedAt  DateTime     @updatedAt            @map("updated_at")
+
+  rentals    Rental[]
+
+  @@map("clients")
+}
+
+enum ClientStatus {
+  ativo
+  inativo
+}
+
+// Modelo: Ponto de Locação
+model RentalPoint {
+  pointId     String            @id @default(uuid())  @map("point_id")
+  name        String            @unique               @map("name")
+  status      RentalPointStatus @default(ativo)       @map("status")
+  createdAt   DateTime          @default(now())       @map("created_at")
+  updatedAt   DateTime          @updatedAt            @map("updated_at")
+
+  cars        Car[]
+  pickups     Rental[] @relation("PickupPoint")
+  returns     Rental[] @relation("ReturnPoint")
+
+  @@map("rental_points")
+}
+
+enum RentalPointStatus {
+  ativo
+  inativo
+}
+
+// Modelo: Carro
 model Car {
-  id          String  @id @default(uuid())
-  plate       String  @unique
-  brand       String
-  model       String
-  year        Int
-  daily_price Decimal @db.Decimal(10, 2)
+  carId           String      @id @default(uuid())  @map("car_id")
+  licensePlate    String      @unique               @map("license_plate")
+  brand           String                            @map("brand")
+  model           String                            @map("model")
+  year            Int                               @map("year")
+  category        CarCategory @default(econômica)   @map("category")
+  status          CarStatus   @default(disponível)  @map("status")
+  dailyRate       Decimal                           @map("daily_rate")
+  currentPointId  String                            @map("current_point_id")
+  createdAt       DateTime    @default(now())       @map("created_at")
+  updatedAt       DateTime    @updatedAt            @map("updated_at")
+
+  currentPoint    RentalPoint? @relation(fields: [currentPointId], references: [pointId])
+  rentals         Rental[]
 
   @@map("cars")
 }
 
-model Customer {
-  id            String @id @default(uuid())
-  name          String
-  email         String @unique
-  password_hash String
-  created_at    DateTime @default(now())
-  updated_at    DateTime @updatedAt
-
-  @@map("customers")
+enum CarCategory {
+  econômica
+  sedan
+  suv
+  luxo
+  minivan
 }
 
-model RentalLocation {
-  id      String @id @default(uuid())
-  name    String @unique
-  @@map("rental_locations")
+enum CarStatus {
+  disponível
+  alugado
+  manutenção
+  desativado
+}
+
+// Modelo: Locação
+model Rental {
+  rentalId       String       @id @default(uuid())    @map("rental_id")
+  clientId       String                               @map("client_id")
+  carId          String                               @map("car_id")
+  pickupPointId  String                               @map("pickup_point_id")
+  returnPointId  String                               @map("return_point_id")
+  pickupDate     DateTime                             @map("pickup_date")
+  returnDate     DateTime                             @map("return_date")
+  finalValue     Decimal      @db.Decimal(10, 2)      @map("final_value")
+  status         RentalStatus @default(pendente)      @map("status")
+  createdAt      DateTime     @default(now())         @map("created_at")
+  updatedAt      DateTime     @updatedAt              @map("updated_at")
+
+  client         Client       @relation(fields: [clientId], references: [clientId])
+  car            Car          @relation(fields: [carId], references: [carId])
+  pickupPoint    RentalPoint  @relation("PickupPoint", fields: [pickupPointId], references: [pointId])
+  returnPoint    RentalPoint  @relation("ReturnPoint", fields: [returnPointId], references: [pointId])
+
+  @@map("rentals")
+}
+
+enum RentalStatus {
+  pendente
+  ativo
+  concluído
+  cancelado
 }

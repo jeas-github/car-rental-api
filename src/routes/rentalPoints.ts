@@ -181,7 +181,7 @@ export async function rentalPointsRoutes(app: FastifyInstance) {
       }
    });
 
-   // Rota para deletar um ponto de locação
+   // Rota para deletar um Ponto de locação pelo ID
    app.delete("/:id", async (request: FastifyRequest, reply: FastifyReply) => {
       try {
          const { id } = request.params as { id: string };

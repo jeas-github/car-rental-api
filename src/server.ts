@@ -13,5 +13,7 @@ app.listen(
       process.exit(1);
     }
     console.log(`🚀 HTTP Server Running! ${address}`);
+    console.log(`🚀 HTTP AdminJS Server Running! ${address}/admin`);
+    console.log(`🚀 HTTP OpenAPI Server Running! ${address}/docs`);
   },
 );

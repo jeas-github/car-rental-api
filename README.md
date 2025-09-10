@@ -69,6 +69,16 @@ API RESTful para o sistema de aluguel de carros **Move On**.
   ```bash
   npm run lint:fix
   ```
+---
+
+## Documentação
+
+Após subir o servidor com o comando `npm run start:dev`, você pode acessar a documentação e o painel administrativo nos seguintes endereços:
+
+- **Swagger (Documentação da API):** [http://127.0.0.1:3333/docs](http://127.0.0.1:3333/docs)
+- **AdminJS (Painel Administrativo):** [http://127.0.0.1:3333/admin](http://127.0.0.1:3333/admin)
+
+---
 
 ## Estrutura do Projeto
 

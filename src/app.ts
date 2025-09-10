@@ -1,32 +1,38 @@
-import AdminJS from "adminjs";
-import fastify from "fastify";
-import AdminJSFastify from "@adminjs/fastify";
-import { Database, Resource, getModelByName } from "@adminjs/prisma";
+import { fastify } from "fastify";
+import { fastifyCors } from "@fastify/cors";
+import {
+  validatorCompiler,
+  serializerCompiler,
+  ZodTypeProvider,
+  jsonSchemaTransform,
+} from "fastify-type-provider-zod";
+import fastifySwagger from "@fastify/swagger";
+import fastifySwaggerUi from "@fastify/swagger-ui";
 
-import { prisma } from "@/lib/prisma";
-import { carsRoutes } from "./routes/cars";
-import { rentalPointsRoutes } from "./routes/rentalPoints";
-import { clientsRoutes } from "./routes/clients";
+import adminPlugin from "@/plugins/admin";
+import routesPlugin from "@/plugins/routes-plugin";
 
-export const app = fastify();
+export const app = fastify().withTypeProvider<ZodTypeProvider>();
 
-AdminJS.registerAdapter({ Database, Resource });
+app.setValidatorCompiler(validatorCompiler);
+app.setSerializerCompiler(serializerCompiler);
 
-const adminOptions = {
-  resources: [
-    {
-      resource: { model: getModelByName("RentalPoint"), client: prisma },
-      options: {},
+app.register(fastifyCors, { origin: "*" });
+app.register(adminPlugin);
+
+app.register(fastifySwagger, {
+  openapi: {
+    info: {
+      title: "Car Rental API",
+      description: "API for managing car rentals",
+      version: "1.0.0",
     },
-  ],
-  databases: [],
-  rootPath: "/admin",
-};
+  },
+  transform: jsonSchemaTransform,
+});
 
-const admin = new AdminJS(adminOptions);
+app.register(fastifySwaggerUi, {
+  routePrefix: "/docs",
+});
 
-await AdminJSFastify.buildRouter(admin, app);
-
-app.register(carsRoutes, { prefix: "/api/cars" });
-app.register(rentalPointsRoutes, { prefix: "/api/rental-points" });
-app.register(clientsRoutes, { prefix: "/api/clients" });
+app.register(routesPlugin);

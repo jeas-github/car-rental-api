@@ -1,53 +1,125 @@
-import { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
 import { prisma } from "@/lib/prisma";
-import { z, ZodError } from "zod";
+import { z } from "zod";
+import { FastifyTypedInstance } from "@/types/types";
+import { Prisma } from "@prisma/client";
 
 const createRentalPointBodySchema = z.object({
   name: z.string().min(2, "O nome deve ter pelo menos 2 caracteres."),
   status: z.enum(["ativo", "inativo"]).optional(), // permite o campo status
 });
 
-export async function rentalPointsRoutes(app: FastifyInstance) {
+// Zod Schema para a resposta de um único Rental Point
+const rentalPointResponseSchema = z.object({
+  pointId: z.string(),
+  name: z.string(),
+  status: z.enum(["ativo", "inativo"]),
+  createdAt: z.date(),
+  updatedAt: z.date(),
+});
+
+// Zod Schema para a resposta de uma lista de Rental Points
+const rentalPointsListSchema = z.array(rentalPointResponseSchema);
+
+const pointParamsSchema = z.object({
+  id: z.string().uuid(),
+});
+
+const updateRentalPointBodySchema = z.object({
+  name: z
+    .string()
+    .min(2, "O nome deve ter pelo menos 2 caracteres.")
+    .optional(),
+  status: z.enum(["ativo", "inativo"]).optional(),
+});
+
+const updateRentalPointResponseSchema = z.object({
+  message: z.string(),
+  data: z.object({
+    pointId: z.string().uuid(),
+    name: z.string(),
+    status: z.enum(["ativo", "inativo"]),
+    createdAt: z.date(),
+    updatedAt: z.date(),
+  }),
+});
+
+export async function rentalPointsRoutes(app: FastifyTypedInstance) {
   // Rota para listar todos os Pontos de Locação (Rental Points)
-  app.get("/", async (_, reply: FastifyReply) => {
-    try {
+  app.get(
+    "/",
+    {
+      schema: {
+        summary: "Lista todos os pontos de aluguel",
+        tags: ["Rental Points"],
+        response: {
+          200: rentalPointsListSchema,
+          500: z.object({
+            message: z.string(),
+          }),
+        },
+      },
+    },
+    async (_, reply) => {
       const rentalPoints = await prisma.rentalPoint.findMany({
         orderBy: { name: "asc" },
       });
       return reply.status(200).send(rentalPoints);
-    } catch (error) {
-      console.error(error);
-      return reply.status(500).send({ message: "Erro interno do servidor." });
-    }
-  });
+    },
+  );
 
   // Rota para listar apenas um Ponto de Locação (Rental Point) pelo ID
-  app.get("/:id", async (request: FastifyRequest, reply: FastifyReply) => {
-    try {
-      const { id } = request.params as { id: string };
+  app.get(
+    "/:id",
+    {
+      schema: {
+        summary: "Lista um ponto de aluguel pelo ID",
+        tags: ["Rental Points"],
+        params: pointParamsSchema,
+        response: {
+          200: rentalPointResponseSchema,
+          404: z.object({ message: z.string() }),
+        },
+      },
+    },
+    async (request, reply) => {
       const rentalPoint = await prisma.rentalPoint.findUnique({
-        where: { pointId: id },
+        where: { pointId: request.params.id },
       });
+
       if (!rentalPoint) {
         return reply
           .status(404)
           .send({ message: "Ponto de aluguel não encontrado." });
       }
       return reply.status(200).send(rentalPoint);
-    } catch (error) {
-      console.error(error);
-      return reply.status(500).send({ message: "Erro interno do servidor." });
-    }
-  });
+    },
+  );
 
   // Rota para criar um novo Ponto de Locação (Rental Point)
-  app.post("/", async (request: FastifyRequest, reply: FastifyReply) => {
-    try {
-      const { name, status } = createRentalPointBodySchema.parse(request.body);
+  app.post(
+    "/",
+    {
+      schema: {
+        summary: "Cria um novo ponto de aluguel",
+        tags: ["Rental Points"],
+        body: createRentalPointBodySchema,
+        response: {
+          201: z.object({
+            message: z.string(),
+            data: z.object({
+              uuid: z.string(),
+              name: z.string(),
+            }),
+          }),
+          409: z.object({ message: z.string() }),
+        },
+      },
+    },
+    async (request, reply) => {
+      const { name, status } = request.body;
 
-      // Verificação de nome duplicado
       const existingPoint = await prisma.rentalPoint.findUnique({
-        where: { name: name },
+        where: { name },
       });
 
       if (existingPoint) {
@@ -67,70 +139,33 @@ export async function rentalPointsRoutes(app: FastifyInstance) {
           name: rentalPoint.name,
         },
       });
-    } catch (error) {
-      if (error instanceof ZodError) {
-        return reply.status(400).send({
-          message: "Dados de entrada inválidos.",
-          errors: error.issues,
-        });
-      }
-      console.error(error); // Log do erro para depuração
-      return reply.status(500).send({ message: "Erro interno do servidor." });
-    }
-  });
-
-  // Rota para editar um Ponto de Locação pelo ID (PUT)
-  app.put("/:id", async (request: FastifyRequest, reply: FastifyReply) => {
-    try {
-      const { id } = request.params as { id: string };
-      const { name, status } = createRentalPointBodySchema.parse(request.body);
-      const rentalPoint = await prisma.rentalPoint.findUnique({
-        where: { pointId: id },
-      });
-      if (!rentalPoint) {
-        return reply
-          .status(404)
-          .send({ message: "Ponto de aluguel não encontrado." });
-      }
-      // Verificação de nome duplicado
-      const existingPoint = await prisma.rentalPoint.findUnique({
-        where: { name: name },
-      });
-      if (existingPoint && existingPoint.pointId !== id) {
-        return reply.status(409).send({
-          message: "Um ponto de aluguel com este nome já existe.",
-        });
-      }
-      const updatedPoint = await prisma.rentalPoint.update({
-        where: { pointId: id },
-        data: { name, status },
-      });
-      return reply.status(200).send({
-        message: "Ponto de aluguel atualizado com sucesso!",
-        data: updatedPoint,
-      });
-    } catch (error) {
-      if (error instanceof ZodError) {
-        return reply.status(400).send({
-          message: "Dados de entrada inválidos.",
-          errors: error.issues,
-        });
-      }
-      console.error(error);
-      return reply.status(500).send({ message: "Erro interno do servidor." });
-    }
-  });
+    },
+  );
 
   // Rota para editar um Ponto de Locação pelo ID (PATCH)
-  app.patch("/:id", async (request: FastifyRequest, reply: FastifyReply) => {
-    try {
-      const { id } = request.params as { id: string };
-      const { name, status } = createRentalPointBodySchema
-        .partial()
-        .parse(request.body);
+  app.patch(
+    "/:id",
+    {
+      schema: {
+        summary: "Atualiza parcialmente um ponto de aluguel",
+        tags: ["Rental Points"],
+        params: pointParamsSchema,
+        body: updateRentalPointBodySchema,
+        response: {
+          200: updateRentalPointResponseSchema,
+          404: z.object({ message: z.string() }),
+          409: z.object({ message: z.string() }),
+        },
+      },
+    },
+    async (request, reply) => {
+      const { id } = request.params;
+      const { name, status } = request.body;
+
       const rentalPoint = await prisma.rentalPoint.findUnique({
         where: { pointId: id },
       });
+
       if (!rentalPoint) {
         return reply
           .status(404)
@@ -141,12 +176,14 @@ export async function rentalPointsRoutes(app: FastifyInstance) {
         const existingPoint = await prisma.rentalPoint.findUnique({
           where: { name: name },
         });
+
         if (existingPoint && existingPoint.pointId !== id) {
           return reply.status(409).send({
             message: "Um ponto de aluguel com este nome já existe.",
           });
         }
       }
+
       const updatedPoint = await prisma.rentalPoint.update({
         where: { pointId: id },
         data: { name, status },
@@ -155,42 +192,45 @@ export async function rentalPointsRoutes(app: FastifyInstance) {
         message: "Ponto de aluguel atualizado com sucesso!",
         data: updatedPoint,
       });
-    } catch (error) {
-      if (error instanceof ZodError) {
-        return reply.status(400).send({
-          message: "Dados de entrada inválidos.",
-          errors: error.issues,
-        });
-      }
-      console.error(error);
-      return reply.status(500).send({ message: "Erro interno do servidor." });
-    }
-  });
+    },
+  );
 
   // Rota para deletar um ponto de locação
-  app.delete("/:id", async (request: FastifyRequest, reply: FastifyReply) => {
-    try {
-      const { id } = request.params as { id: string };
-      const rentalPoint = await prisma.rentalPoint.findUnique({
-        where: { pointId: id },
-      });
+  app.delete(
+    "/:id",
+    {
+      schema: {
+        summary: "Atualiza parcialmente um ponto de aluguel",
+        tags: ["Rental Points"],
+        params: pointParamsSchema,
+        response: {
+          200: z.object({ message: z.string() }),
+          404: z.object({ message: z.string() }),
+        },
+      },
+    },
+    async (request, reply) => {
+      const { id } = request.params;
 
-      if (!rentalPoint) {
-        return reply
-          .status(404)
-          .send({ message: "Ponto de aluguel não encontrado." });
+      try {
+        await prisma.rentalPoint.delete({
+          where: { pointId: id },
+        });
+
+        return reply.status(200).send({
+          message: "Ponto de aluguel deletado com sucesso!",
+        });
+      } catch (error) {
+        if (
+          error instanceof Prisma.PrismaClientKnownRequestError &&
+          error.code === "P2025"
+        ) {
+          return reply.status(404).send({
+            message: "Ponto de aluguel não encontrado.",
+          });
+        }
+        throw error; // Re-lança outros erros para o manipulador padrão do Fastify
       }
-
-      await prisma.rentalPoint.delete({
-        where: { pointId: id },
-      });
-
-      return reply.status(200).send({
-        message: "Ponto de aluguel deletado com sucesso!",
-      });
-    } catch (error) {
-      console.error(error);
-      return reply.status(500).send({ message: "Erro interno do servidor." });
-    }
-  });
+    },
+  );
 }

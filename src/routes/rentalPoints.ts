@@ -106,10 +106,7 @@ export async function rentalPointsRoutes(app: FastifyTypedInstance) {
         response: {
           201: z.object({
             message: z.string(),
-            data: z.object({
-              uuid: z.string(),
-              name: z.string(),
-            }),
+            pointId: z.string().uuid(),
           }),
           409: z.object({ message: z.string() }),
         },
@@ -134,10 +131,7 @@ export async function rentalPointsRoutes(app: FastifyTypedInstance) {
 
       return reply.status(201).send({
         message: "Ponto de aluguel criado com sucesso!",
-        data: {
-          uuid: rentalPoint.pointId,
-          name: rentalPoint.name,
-        },
+        pointId: rentalPoint.pointId,
       });
     },
   );
@@ -200,11 +194,11 @@ export async function rentalPointsRoutes(app: FastifyTypedInstance) {
     "/:id",
     {
       schema: {
-        summary: "Atualiza parcialmente um ponto de aluguel",
+        summary: "Deleta um ponto de aluguel",
         tags: ["Rental Points"],
         params: pointParamsSchema,
         response: {
-          200: z.object({ message: z.string() }),
+          204: z.object({ message: z.string() }),
           404: z.object({ message: z.string() }),
         },
       },
@@ -217,9 +211,7 @@ export async function rentalPointsRoutes(app: FastifyTypedInstance) {
           where: { pointId: id },
         });
 
-        return reply.status(200).send({
-          message: "Ponto de aluguel deletado com sucesso!",
-        });
+        return reply.status(204).send();
       } catch (error) {
         if (
           error instanceof Prisma.PrismaClientKnownRequestError &&

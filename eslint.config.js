@@ -12,16 +12,8 @@ import prettierConfig from "eslint-config-prettier";
 export default [
   // A propriedade 'ignores' deve ser definida no início do array para arquivos e diretórios que devem ser excluídos.
   // Estes padrões são semelhantes aos de um arquivo .eslintignore.
-  {
-    ignores: [
-      "dist/",
-      "node_modules/",
-      "*.test.ts",
-      "**/*.spec.ts",
-      "build/",
-      "coverage/",
-    ],
-  },
+  // A forma correta, esperada pelo Prettier
+  { ignores: ["dist/", "node_modules/", "*.test.ts", "build/", "coverage/",]},
 
   // Define as regras para arquivos JavaScript e TypeScript
   {

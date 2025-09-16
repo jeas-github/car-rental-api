@@ -4,7 +4,7 @@ import { z } from "zod";
 import { ZodError } from "zod";
 
 const createCarBodySchema = z.object({
-  plate: z.string().regex(/^[A-Z]{3}[0-9][A-Z][0-9]{2}$/i, {
+  licensePlate: z.string().regex(/^[A-Z]{3}[0-9][A-Z0-9][0-9]{2}$/i, {
     message: 'A placa deve seguir o formato "ABC1D23".',
   }),
   brand: z.string().min(2, "A marca deve ter pelo menos 2 caracteres."),
@@ -13,21 +13,30 @@ const createCarBodySchema = z.object({
     .number()
     .int("O ano deve ser um número inteiro.")
     .min(2015, "O ano deve ser igual ou superior a 2015."),
-  daily_price: z
+  dailyRate: z
     .number()
     .positive("O preço da diária deve ser um número positivo."),
+  category: z.enum(["econômica", "sedan", "suv", "luxo", "minivan"]),
+  currentPointId: z.string().uuid("O ID do ponto de locação é inválido."),
 });
 
 export async function carsRoutes(app: FastifyInstance) {
   // Rota para criar um novo carro
-  app.post("/cars", async (request: FastifyRequest, reply: FastifyReply) => {
+  app.post("/", async (request: FastifyRequest, reply: FastifyReply) => {
     try {
-      const { plate, brand, model, year, daily_price } =
-        createCarBodySchema.parse(request.body);
+      const {
+        licensePlate,
+        brand,
+        model,
+        year,
+        dailyRate,
+        category,
+        currentPointId,
+      } = createCarBodySchema.parse(request.body);
 
       // Verificação de placa duplicada
       const existingCar = await prisma.car.findUnique({
-        where: { plate: plate.toUpperCase() },
+        where: { licensePlate: licensePlate.toUpperCase() },
       });
 
       if (existingCar) {
@@ -36,21 +45,34 @@ export async function carsRoutes(app: FastifyInstance) {
           .send({ message: "Um carro com esta placa já existe." });
       }
 
+      // Verifica se o ponto de locação existe
+      const rentalPointExists = await prisma.rentalPoint.findUnique({
+        where: { pointId: currentPointId },
+      });
+
+      if (!rentalPointExists) {
+        return reply
+          .status(404)
+          .send({ message: "Ponto de locação não encontrado." });
+      }
+
       const car = await prisma.car.create({
         data: {
-          plate: plate.toUpperCase(),
+          licensePlate: licensePlate.toUpperCase(),
           brand,
           model,
           year,
-          daily_price,
+          dailyRate,
+          category,
+          currentPointId,
         },
       });
 
       return reply.status(201).send({
         message: "Carro criado com sucesso!",
-        data: car,
+        carId: car.carId,
       });
-    } catch (error) {
+    } catch (error: any) {
       if (error instanceof ZodError) {
         return reply.status(400).send({
           message: "Dados de entrada inválidos.",
@@ -63,7 +85,7 @@ export async function carsRoutes(app: FastifyInstance) {
   });
 
   // Rota para listar todos os carros
-  app.get("/cars", async (_, reply: FastifyReply) => {
+  app.get("/", async (_, reply: FastifyReply) => {
     try {
       const cars = await prisma.car.findMany({
         orderBy: { brand: "asc" },

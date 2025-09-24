@@ -55,8 +55,6 @@ export class CreateRentalUseCase {
       startOfDay(pickupDate),
     );
 
-    console.log({ rentalDays });
-
     // Garante que o aluguel mínimo seja de 1 dia
     if (rentalDays <= 0) {
       rentalDays = 1;

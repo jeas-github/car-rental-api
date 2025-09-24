@@ -13,7 +13,7 @@ export class InMemoryRentalsRepository implements IRentalsRepository {
       clientId: data.client.connect?.clientId as string,
       pickupPointId: data.pickupPoint.connect?.pointId as string,
       returnPointId: data.pickupPoint.connect?.pointId as string,
-      pickupDate: new Date(),
+      pickupDate: new Date(data.pickupDate as Date),
       returnDate: new Date(data.returnDate as Date),
       finalValue: Decimal(100),
       status: "ativo",

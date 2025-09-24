@@ -67,17 +67,15 @@ describe("Return Car Use Case", () => {
 
   it("should calculate the final value correctly", async () => {
     // Mocking the return date to be 3 days after pickup
-    vi.setSystemTime(new Date("2024-01-13T12:00:00.000Z"));
+    vi.setSystemTime(new Date("2024-01-15T12:00:00.000Z"));
 
     const { rental } = await sut.execute({
       rentalId: "rental-01",
       dropoffPointId: "dropoff-point",
     });
 
-    console.log(rental);
-
     // 3 days * R$100/day
-    expect(rental.finalValue?.toNumber()).toBe(300);
+    expect(rental.finalValue).toBe(300);
   });
 
   it("should throw an error if rental is not found", async () => {

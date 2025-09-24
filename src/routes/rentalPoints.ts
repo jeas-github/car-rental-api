@@ -1,7 +1,13 @@
-import { prisma } from "@/lib/prisma";
 import { z } from "zod";
 import { FastifyTypedInstance } from "@/types/types";
-import { Prisma } from "@prisma/client";
+
+import {
+  create,
+  getById,
+  list,
+  remove,
+  update,
+} from "@/modules/rental-points/controllers/rental-points-controller";
 
 const createRentalPointBodySchema = z.object({
   name: z.string().min(2, "O nome deve ter pelo menos 2 caracteres."),
@@ -59,12 +65,7 @@ export async function rentalPointsRoutes(app: FastifyTypedInstance) {
         },
       },
     },
-    async (_, reply) => {
-      const rentalPoints = await prisma.rentalPoint.findMany({
-        orderBy: { name: "asc" },
-      });
-      return reply.status(200).send(rentalPoints);
-    },
+    list,
   );
 
   // Rota para listar apenas um Ponto de Locação (Rental Point) pelo ID
@@ -81,18 +82,7 @@ export async function rentalPointsRoutes(app: FastifyTypedInstance) {
         },
       },
     },
-    async (request, reply) => {
-      const rentalPoint = await prisma.rentalPoint.findUnique({
-        where: { pointId: request.params.id },
-      });
-
-      if (!rentalPoint) {
-        return reply
-          .status(404)
-          .send({ message: "Ponto de aluguel não encontrado." });
-      }
-      return reply.status(200).send(rentalPoint);
-    },
+    getById,
   );
 
   // Rota para criar um novo Ponto de Locação (Rental Point)
@@ -106,40 +96,14 @@ export async function rentalPointsRoutes(app: FastifyTypedInstance) {
         response: {
           201: z.object({
             message: z.string(),
-            data: z.object({
-              uuid: z.string(),
-              name: z.string(),
-            }),
+            id: z.string(),
           }),
+          400: z.object({ message: z.string() }),
           409: z.object({ message: z.string() }),
         },
       },
     },
-    async (request, reply) => {
-      const { name, status } = request.body;
-
-      const existingPoint = await prisma.rentalPoint.findUnique({
-        where: { name },
-      });
-
-      if (existingPoint) {
-        return reply.status(409).send({
-          message: "Um ponto de aluguel com este nome já existe.",
-        });
-      }
-
-      const rentalPoint = await prisma.rentalPoint.create({
-        data: { name, status },
-      });
-
-      return reply.status(201).send({
-        message: "Ponto de aluguel criado com sucesso!",
-        data: {
-          uuid: rentalPoint.pointId,
-          name: rentalPoint.name,
-        },
-      });
-    },
+    create,
   );
 
   // Rota para editar um Ponto de Locação pelo ID (PATCH)
@@ -158,41 +122,7 @@ export async function rentalPointsRoutes(app: FastifyTypedInstance) {
         },
       },
     },
-    async (request, reply) => {
-      const { id } = request.params;
-      const { name, status } = request.body;
-
-      const rentalPoint = await prisma.rentalPoint.findUnique({
-        where: { pointId: id },
-      });
-
-      if (!rentalPoint) {
-        return reply
-          .status(404)
-          .send({ message: "Ponto de aluguel não encontrado." });
-      }
-      // Verificação de nome duplicado
-      if (name) {
-        const existingPoint = await prisma.rentalPoint.findUnique({
-          where: { name: name },
-        });
-
-        if (existingPoint && existingPoint.pointId !== id) {
-          return reply.status(409).send({
-            message: "Um ponto de aluguel com este nome já existe.",
-          });
-        }
-      }
-
-      const updatedPoint = await prisma.rentalPoint.update({
-        where: { pointId: id },
-        data: { name, status },
-      });
-      return reply.status(200).send({
-        message: "Ponto de aluguel atualizado com sucesso!",
-        data: updatedPoint,
-      });
-    },
+    update,
   );
 
   // Rota para deletar um ponto de locação
@@ -209,28 +139,6 @@ export async function rentalPointsRoutes(app: FastifyTypedInstance) {
         },
       },
     },
-    async (request, reply) => {
-      const { id } = request.params;
-
-      try {
-        await prisma.rentalPoint.delete({
-          where: { pointId: id },
-        });
-
-        return reply.status(200).send({
-          message: "Ponto de aluguel deletado com sucesso!",
-        });
-      } catch (error) {
-        if (
-          error instanceof Prisma.PrismaClientKnownRequestError &&
-          error.code === "P2025"
-        ) {
-          return reply.status(404).send({
-            message: "Ponto de aluguel não encontrado.",
-          });
-        }
-        throw error; // Re-lança outros erros para o manipulador padrão do Fastify
-      }
-    },
+    remove,
   );
 }

@@ -5,9 +5,9 @@ import {
   makeReturnCarUseCase,
 } from "../use-cases/factories/make-rentals-use-cases";
 import { ResourceNotFoundError } from "@/modules/rental-points/use-cases/errors/resource-not-found-error";
-import { CarNotAvailableError } from "../use-cases/erros/car-not-available-error";
-import { ClientHasOpenRentalError } from "../use-cases/erros/client-has-open-rental-error";
-import { RentalAlreadyFinishedError } from "../use-cases/erros/rental-already-finished-error";
+import { CarNotAvailableError } from "../use-cases/errors/car-not-available-error";
+import { ClientHasOpenRentalError } from "../use-cases/errors/client-has-open-rental-error";
+import { RentalAlreadyFinishedError } from "../use-cases/errors/rental-already-finished-error";
 
 export async function create(request: FastifyRequest, reply: FastifyReply) {
   const createRentalBodySchema = z.object({

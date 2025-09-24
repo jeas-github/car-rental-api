@@ -3,8 +3,8 @@ import { InMemoryClientsRepository } from "@/modules/clients/repositories/in-mem
 import { beforeEach, describe, expect, it } from "vitest";
 import { CreateRentalUseCase } from "./create-rental-use-case";
 import { InMemoryRentalsRepository } from "../repositories/in-memory/in-memory-rentals-repository";
-import { CarNotAvailableError } from "./erros/car-not-available-error";
-import { ClientHasOpenRentalError } from "./erros/client-has-open-rental-error";
+import { CarNotAvailableError } from "./errors/car-not-available-error";
+import { ClientHasOpenRentalError } from "./errors/client-has-open-rental-error";
 
 
 let rentalsRepository: InMemoryRentalsRepository;

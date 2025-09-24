@@ -4,8 +4,8 @@ import { ResourceNotFoundError } from "@/modules/rental-points/use-cases/errors/
 import { Rental } from "@prisma/client";
 import { IRentalsRepository } from "../repositories/I-rentals-repository";
 import { differenceInCalendarDays, endOfDay, startOfDay } from "date-fns";
-import { CarNotAvailableError } from "./erros/car-not-available-error";
-import { ClientHasOpenRentalError } from "./erros/client-has-open-rental-error";
+import { CarNotAvailableError } from "./errors/car-not-available-error";
+import { ClientHasOpenRentalError } from "./errors/client-has-open-rental-error";
 
 interface CreateRentalUseCaseRequest {
   carId: string;

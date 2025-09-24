@@ -3,7 +3,7 @@ import { ResourceNotFoundError } from "@/modules/rental-points/use-cases/errors/
 import { Rental } from "@prisma/client";
 import { differenceInCalendarDays } from "date-fns";
 import { IRentalsRepository } from "../repositories/I-rentals-repository";
-import { RentalAlreadyFinishedError } from "./erros/rental-already-finished-error";
+import { RentalAlreadyFinishedError } from "./errors/rental-already-finished-error";
 
 interface ReturnCarUseCaseRequest {
   rentalId: string;

@@ -5,7 +5,7 @@ import { InMemoryRentalsRepository } from "../repositories/in-memory/in-memory-r
 
 import { ReturnCarUseCase } from "./return-car-use-case";
 import { ResourceNotFoundError } from "@/modules/rental-points/use-cases/errors/resource-not-found-error";
-import { RentalAlreadyFinishedError } from "./erros/rental-already-finished-error";
+import { RentalAlreadyFinishedError } from "./errors/rental-already-finished-error";
 
 let rentalsRepository: InMemoryRentalsRepository;
 let carsRepository: InMemoryCarsRepository;

@@ -21,6 +21,17 @@ import { CarNotAvailableError } from "./modules/rentals/use-cases/errors/car-not
 import { ClientHasOpenRentalError } from "./modules/rentals/use-cases/errors/client-has-open-rental-error";
 import { RentalAlreadyFinishedError } from "./modules/rentals/use-cases/errors/rental-already-finished-error";
 
+// eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
+const errorMapping = new Map<Function, number>([
+  [ResourceNotFoundError, 404],
+  [RentalPointAlreadyExistsError, 409],
+  [CarAlreadyExistsError, 409],
+  [ClientAlreadyExistsError, 409],
+  [CarNotAvailableError, 409],
+  [ClientHasOpenRentalError, 409],
+  [RentalAlreadyFinishedError, 409],
+]);
+
 export const app = fastify().withTypeProvider<ZodTypeProvider>();
 
 app.setValidatorCompiler(validatorCompiler);
@@ -52,25 +63,10 @@ app.setErrorHandler((error, request, reply) => {
     });
   }
 
-  // Adicione aqui outros erros customizados
-  if (error instanceof ResourceNotFoundError) {
-    return reply.status(404).send({ message: error.message });
+  const statusCode = errorMapping.get(error.constructor);
+  if (statusCode) {
+    return reply.status(statusCode).send({ message: error.message });
   }
-
-  if (
-    error instanceof RentalPointAlreadyExistsError ||
-    error instanceof CarAlreadyExistsError ||
-    error instanceof ClientAlreadyExistsError ||
-    error instanceof CarNotAvailableError ||
-    error instanceof ClientHasOpenRentalError ||
-    error instanceof RentalAlreadyFinishedError
-  ) {
-    return reply.status(409).send({ message: error.message });
-  }
-
-  // if (env.NODE_ENV !== "production") {
-  //   console.error(error);
-  // }
 
   return reply.status(500).send({ message: "Erro interno do servidor." });
 });

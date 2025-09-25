@@ -1,5 +1,5 @@
-import { z } from "zod";
 import { FastifyTypedInstance } from "@/types/types";
+import { z } from "zod";
 
 import {
   create,
@@ -8,46 +8,15 @@ import {
   remove,
   update,
 } from "@/modules/rental-points/controllers/rental-points-controller";
-
-const createRentalPointBodySchema = z.object({
-  name: z.string().min(2, "O nome deve ter pelo menos 2 caracteres."),
-  status: z.enum(["ativo", "inativo"]).optional(), // permite o campo status
-});
-
-// Zod Schema para a resposta de um único Rental Point
-const rentalPointResponseSchema = z.object({
-  pointId: z.string(),
-  name: z.string(),
-  status: z.enum(["ativo", "inativo"]),
-  createdAt: z.date(),
-  updatedAt: z.date(),
-});
-
-// Zod Schema para a resposta de uma lista de Rental Points
-const rentalPointsListSchema = z.array(rentalPointResponseSchema);
-
-const pointParamsSchema = z.object({
-  id: z.string().uuid(),
-});
-
-const updateRentalPointBodySchema = z.object({
-  name: z
-    .string()
-    .min(2, "O nome deve ter pelo menos 2 caracteres.")
-    .optional(),
-  status: z.enum(["ativo", "inativo"]).optional(),
-});
-
-const updateRentalPointResponseSchema = z.object({
-  message: z.string(),
-  data: z.object({
-    pointId: z.string().uuid(),
-    name: z.string(),
-    status: z.enum(["ativo", "inativo"]),
-    createdAt: z.date(),
-    updatedAt: z.date(),
-  }),
-});
+import {
+  createRentalPointBodySchema,
+  createRentalPointResponseSchema,
+  rentalPointParamsSchema,
+  rentalPointResponseSchema,
+  rentalPointsListSchema,
+  updateRentalPointBodySchema,
+  updateRentalPointResponseSchema,
+} from "@/modules/rental-points/schemas/rental-points.schemas";
 
 export async function rentalPointsRoutes(app: FastifyTypedInstance) {
   // Rota para listar todos os Pontos de Locação (Rental Points)
@@ -59,9 +28,6 @@ export async function rentalPointsRoutes(app: FastifyTypedInstance) {
         tags: ["Rental Points"],
         response: {
           200: rentalPointsListSchema,
-          500: z.object({
-            message: z.string(),
-          }),
         },
       },
     },
@@ -75,7 +41,7 @@ export async function rentalPointsRoutes(app: FastifyTypedInstance) {
       schema: {
         summary: "Lista um ponto de aluguel pelo ID",
         tags: ["Rental Points"],
-        params: pointParamsSchema,
+        params: rentalPointParamsSchema,
         response: {
           200: rentalPointResponseSchema,
           404: z.object({ message: z.string() }),
@@ -94,11 +60,7 @@ export async function rentalPointsRoutes(app: FastifyTypedInstance) {
         tags: ["Rental Points"],
         body: createRentalPointBodySchema,
         response: {
-          201: z.object({
-            message: z.string(),
-            id: z.string(),
-          }),
-          400: z.object({ message: z.string() }),
+          201: createRentalPointResponseSchema,
           409: z.object({ message: z.string() }),
         },
       },
@@ -113,7 +75,7 @@ export async function rentalPointsRoutes(app: FastifyTypedInstance) {
       schema: {
         summary: "Atualiza parcialmente um ponto de aluguel",
         tags: ["Rental Points"],
-        params: pointParamsSchema,
+        params: rentalPointParamsSchema,
         body: updateRentalPointBodySchema,
         response: {
           200: updateRentalPointResponseSchema,
@@ -130,11 +92,11 @@ export async function rentalPointsRoutes(app: FastifyTypedInstance) {
     "/:id",
     {
       schema: {
-        summary: "Atualiza parcialmente um ponto de aluguel",
+        summary: "Deleta um ponto de aluguel",
         tags: ["Rental Points"],
-        params: pointParamsSchema,
+        params: rentalPointParamsSchema,
         response: {
-          200: z.object({ message: z.string() }),
+          204: z.null(),
           404: z.object({ message: z.string() }),
         },
       },

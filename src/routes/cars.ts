@@ -7,42 +7,15 @@ import {
   update,
 } from "@/modules/cars/controllers/cars-controller";
 import { z } from "zod";
-
-const carParamsSchema = z.object({
-  id: z.string().uuid("ID do carro inválido."),
-});
-
-const createCarBodySchema = z.object({
-  plate: z.string().regex(/^[A-Z]{3}[0-9][A-Z][0-9]{2}$/i, {
-    message: 'A placa deve seguir o formato "ABC1D23".',
-  }),
-  brand: z.string().min(2, "A marca deve ter pelo menos 2 caracteres."),
-  model: z.string().min(2, "O modelo deve ter pelo menos 2 caracteres."),
-  year: z
-    .number()
-    .int("O ano deve ser um número inteiro.")
-    .min(2015, "O ano deve ser igual ou superior a 2015."),
-  dailyRate: z
-    .number()
-    .positive("O preço da diária deve ser um número positivo."),
-  currentPointId: z.string().uuid("ID do ponto de aluguel inválido."),
-});
-
-const updateCarBodySchema = createCarBodySchema.partial();
-
-const carResponseSchema = z.object({
-  carId: z.string().uuid(),
-  licensePlate: z.string(),
-  brand: z.string(),
-  model: z.string(),
-  year: z.number(),
-  category: z.enum(["econômica", "sedan", "suv", "luxo", "minivan"]),
-  status: z.enum(["disponível", "alugado", "manutenção", "desativado"]),
-  dailyRate: z.any(), // Prisma Decimal
-  currentPointId: z.string().uuid(),
-  createdAt: z.date(),
-  updatedAt: z.date(),
-});
+import {
+  carParamsSchema,
+  carResponseSchema,
+  createCarBodySchema,
+  createCarResponseSchema,
+  deleteCarResponseSchema,
+  updateCarBodySchema,
+  updateCarResponseSchema,
+} from "@/modules/cars/schemas/cars.schemas";
 
 export async function carsRoutes(app: FastifyTypedInstance) {
   app.post(
@@ -53,10 +26,7 @@ export async function carsRoutes(app: FastifyTypedInstance) {
         tags: ["Cars"],
         body: createCarBodySchema,
         response: {
-          201: z.object({
-            message: z.string(),
-            data: carResponseSchema,
-          }),
+          201: createCarResponseSchema,
           409: z.object({ message: z.string() }),
         },
       },
@@ -71,7 +41,7 @@ export async function carsRoutes(app: FastifyTypedInstance) {
         summary: "Lista todos os carros",
         tags: ["Cars"],
         response: {
-          200: z.array(carResponseSchema),
+          200: z.array(carResponseSchema), // Assuming list returns an array of cars
         },
       },
     },
@@ -103,10 +73,7 @@ export async function carsRoutes(app: FastifyTypedInstance) {
         params: carParamsSchema,
         body: updateCarBodySchema,
         response: {
-          200: z.object({
-            message: z.string(),
-            data: carResponseSchema,
-          }),
+          200: updateCarResponseSchema,
           404: z.object({ message: z.string() }),
           409: z.object({ message: z.string() }),
         },
@@ -123,7 +90,7 @@ export async function carsRoutes(app: FastifyTypedInstance) {
         tags: ["Cars"],
         params: carParamsSchema,
         response: {
-          200: z.object({ message: z.string() }),
+          200: deleteCarResponseSchema,
           404: z.object({ message: z.string() }),
         },
       },

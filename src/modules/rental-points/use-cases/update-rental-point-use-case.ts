@@ -1,7 +1,7 @@
 import { RentalPoint } from "@prisma/client";
 import { IRentalPointsRepository } from "../repositories/I-rental-points-repository";
 import { RentalPointAlreadyExistsError } from "./errors/rental-point-already-exists-error";
-import { ResourceNotFoundError } from "./errors/resource-not-found-error";
+import { ResourceNotFoundError } from "../../shared/errors/resource-not-found-error";
 
 interface UpdateRentalPointUseCaseRequest {
   id: string;

@@ -1,5 +1,5 @@
 import { ICarsRepository } from "@/modules/cars/repositories/I-cars-repository";
-import { ResourceNotFoundError } from "@/modules/rental-points/use-cases/errors/resource-not-found-error";
+import { ResourceNotFoundError } from "@/modules/shared/errors/resource-not-found-error";
 import { Rental } from "@prisma/client";
 import { differenceInCalendarDays } from "date-fns";
 import { IRentalsRepository } from "../repositories/I-rentals-repository";

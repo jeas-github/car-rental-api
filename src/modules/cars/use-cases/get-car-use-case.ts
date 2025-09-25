@@ -1,6 +1,6 @@
 import { Car } from "@prisma/client";
 import { ICarsRepository } from "../repositories/I-cars-repository";
-import { ResourceNotFoundError } from "@/modules/rental-points/use-cases/errors/resource-not-found-error";
+import { ResourceNotFoundError } from "@/modules/shared/errors/resource-not-found-error";
 
 interface GetCarUseCaseRequest {
   carId: string;

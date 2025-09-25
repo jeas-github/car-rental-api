@@ -4,7 +4,7 @@ import { beforeEach, describe, expect, it } from "vitest";
 import { InMemoryRentalsRepository } from "../repositories/in-memory/in-memory-rentals-repository";
 
 import { ReturnCarUseCase } from "./return-car-use-case";
-import { ResourceNotFoundError } from "@/modules/rental-points/use-cases/errors/resource-not-found-error";
+import { ResourceNotFoundError } from "@/modules/shared/errors/resource-not-found-error";
 import { RentalAlreadyFinishedError } from "./errors/rental-already-finished-error";
 
 let rentalsRepository: InMemoryRentalsRepository;

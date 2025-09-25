@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it } from "vitest";
 import { InMemoryRentalPointsRepository } from "../repositories/in-memory/in-memory-rental-points-repository";
 import { DeleteRentalPointUseCase } from "./delete-rental-point-use-case";
-import { ResourceNotFoundError } from "./errors/resource-not-found-error";
+import { ResourceNotFoundError } from "../../shared/errors/resource-not-found-error";
 
 let rentalPointsRepository: InMemoryRentalPointsRepository;
 let sut: DeleteRentalPointUseCase;

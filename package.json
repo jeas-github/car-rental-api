@@ -8,15 +8,16 @@
     "postinstall": "prisma generate",
     "start:test": "vitest run",
     "db:test-setup": "prisma migrate deploy",
-    "test:watch": "vitest",
-    "test:coverage": "vitest run --coverage",
     "test:ui": "vitest --ui",
     "start:dev": "tsx watch src/server.ts",
     "start": "node build/server.js",
     "build": "tsup src --out-dir build",
-    "lint": "eslint . --ext .js,.ts",
-    "lint:fix": "eslint . --ext .js,.ts --fix",
-    "migrate:dev": "prisma migrate dev"
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix",
+    "test": "vitest",
+    "test:watch": "vitest watch",
+    "test:coverage": "vitest run --coverage",
+    "prepare": "husky"
   },
   "repository": {
     "type": "git",
@@ -28,17 +29,20 @@
   "bugs": {
     "url": "https://github.com/jeas-github/car-rental-api/issues"
   },
+  "lint-staged": {
+    "*.ts": "eslint --fix"
+  },
   "homepage": "https://github.com/jeas-github/car-rental-api#readme",
   "devDependencies": {
     "@eslint/js": "9.32.0",
+    "@types/bcrypt": "6.0.0",
     "@types/node": "24.2.0",
-    "@types/supertest": "6.0.3",
-    "@vitejs/plugin-react": "5.0.2",
     "@vitest/coverage-v8": "3.2.4",
-    "@vitest/ui": "3.2.4",
     "eslint": "9.32.0",
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-prettier": "5.5.3",
+    "husky": "9.1.7",
+    "lint-staged": "15.5.2",
     "prettier": "3.6.2",
     "prisma": "6.15.0",
     "sqlite3": "5.1.7",

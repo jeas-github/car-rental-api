@@ -64,7 +64,7 @@ model Car {
   createdAt      DateTime    @default(now()) @map("created_at")
   updatedAt      DateTime    @updatedAt @map("updated_at")
 
-  currentPoint RentalPoint @relation(fields: [currentPointId], references: [pointId])
+  currentPoint RentalPoint? @relation(fields: [currentPointId], references: [pointId])
   rentals      Rental[]
 
   @@map("cars")

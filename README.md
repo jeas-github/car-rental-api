@@ -21,12 +21,14 @@ API RESTful para o sistema de aluguel de carros **Move On**.
 ## Instalação
 
 1. **Clone o repositório:**
+
    ```bash
    git clone https://github.com/jeas-github/car-rental-api.git
    cd car-rental-api
    ```
 
 2. **Instale as dependências:**
+
    ```bash
    npm install
    ```
@@ -34,16 +36,19 @@ API RESTful para o sistema de aluguel de carros **Move On**.
 3. **Configure o banco de dados:**
    - Crie um banco MySQL chamado `car-rental`.
    - Edite o arquivo `.env` com suas credenciais:
-     ```
-     DATABASE_URL="mysql://usuario:senha@localhost:3306/car-rental"
-     ```
+
+      ```env
+      DATABASE_URL="mysql://usuario:senha@localhost:3306/car-rental"
+      ```
 
 4. **Execute as migrations do Prisma:**
+
    ```bash
    npx prisma migrate dev
    ```
 
 5. **(Opcional) Abra o Prisma Studio para visualizar os dados:**
+
    ```bash
    npx prisma studio
    ```
@@ -51,24 +56,29 @@ API RESTful para o sistema de aluguel de carros **Move On**.
 ## Principais Comandos
 
 - **Subir o servidor em modo desenvolvimento:**
-  ```bash
-  npm run start:dev
-  ```
+
+   ```bash
+   npm run start:dev
+   ```
 
 - **Rodar migrations do banco:**
-  ```bash
-  npx prisma migrate dev
-  ```
+
+   ```bash
+   npx prisma migrate dev
+   ```
 
 - **Gerar o Prisma Client (após alterar o schema):**
-  ```bash
-  npx prisma generate
-  ```
+
+   ```bash
+   npx prisma generate
+   ```
 
 - **Padronizar e corrigir o código:**
-  ```bash
-  npm run lint:fix
-  ```
+
+   ```bash
+   npm run lint:fix
+   ```
+
 ---
 
 ## Documentação
@@ -82,16 +92,16 @@ Após subir o servidor com o comando `npm run start:dev`, você pode acessar a d
 
 ## Estrutura do Projeto
 
-```
 src/
-  routes/         # Rotas da API (ex: cars.ts)
-  entities/       # Modelos de dados (se necessário)
-  server.ts       # Inicialização do servidor Fastify
+
+src/
+routes/ # Rotas da API (ex: cars.ts)
+entities/ # Modelos de dados (se necessário)
+server.ts # Inicialização do servidor Fastify
 prisma/
-  schema.prisma   # Modelos e configuração do Prisma
-  migrations/     # Histórico das migrations
-.env              # Variáveis de ambiente
-```
+schema.prisma # Modelos e configuração do Prisma
+migrations/ # Histórico das migrations
+.env # Variáveis de ambiente
 
 ## Observações
 

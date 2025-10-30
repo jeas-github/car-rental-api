@@ -1,0 +1,5 @@
+JEST  biblioteca JS para teste
+
+Testes unitários: 
+
+TDD desenvolvimento guiado por testes.

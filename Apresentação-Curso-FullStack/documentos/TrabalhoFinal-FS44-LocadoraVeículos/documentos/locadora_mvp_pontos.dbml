@@ -1,0 +1,123 @@
+
+Table Cliente {
+  cliente_id int [pk, increment]
+  nome varchar
+  cpf varchar [unique]
+  email varchar [unique]
+  telefone varchar
+  endereco varchar
+  data_nascimento date
+  cnh_numero varchar
+  cnh_validade date
+  data_cadastro datetime
+  status varchar // ativo, inativo, bloqueado
+}
+
+Table Funcionario {
+  funcionario_id int [pk, increment]
+  nome varchar
+  email varchar [unique]
+  senha_hash varchar
+  perfil_acesso varchar // atendente, gerente
+  data_cadastro datetime
+  status varchar // ativo, inativo
+}
+
+Table Ponto_Locacao {
+  ponto_id int [pk, increment]
+  nome varchar
+  endereco varchar
+  cidade varchar
+  estado varchar
+  cep varchar
+  telefone varchar
+  horario_funcionamento varchar
+  status varchar // ativo, inativo
+  data_cadastro datetime
+}
+
+Table Veiculo {
+  veiculo_id int [pk, increment]
+  placa varchar [unique]
+  modelo varchar
+  ano int
+  cor varchar
+  quilometragem int
+  categoria varchar // popular, SUV, luxo...
+  status varchar // disponivel, reservado, alugado, baixado
+  diaria_padrao decimal
+  ponto_atual_id int [ref: > Ponto_Locacao.ponto_id] // onde o veículo está fisicamente
+  data_cadastro datetime
+}
+
+Table Tarifa {
+  tarifa_id int [pk, increment]
+  categoria varchar // aplica por categoria
+  periodo varchar // diario, semanal, mensal
+  valor decimal
+  alta_temporada boolean
+  data_inicio date
+  data_fim date
+}
+
+Table Adicional {
+  adicional_id int [pk, increment]
+  descricao varchar // GPS, cadeirinha, condutor adicional, protecoes
+  valor_diaria decimal
+}
+
+Table Reserva {
+  reserva_id int [pk, increment]
+  cliente_id int [ref: > Cliente.cliente_id]
+  veiculo_id int [ref: > Veiculo.veiculo_id]
+  ponto_retirada_id int [ref: > Ponto_Locacao.ponto_id]
+  ponto_devolucao_id int [ref: > Ponto_Locacao.ponto_id]
+  data_retirada_prevista date
+  hora_retirada_prevista time
+  data_devolucao_prevista date
+  hora_devolucao_prevista time
+  valor_previsto decimal
+  sinal_valor decimal // 20% do total previsto
+  sinal_status varchar // pendente, pago, estornado
+  status varchar // pendente, confirmada, cancelada
+  data_criacao datetime
+}
+
+Table Reserva_Adicional {
+  reserva_id int [ref: > Reserva.reserva_id]
+  adicional_id int [ref: > Adicional.adicional_id]
+  Note: 'PK composta: (reserva_id, adicional_id)'
+}
+
+Table Locacao {
+  locacao_id int [pk, increment]
+  reserva_id int [ref: > Reserva.reserva_id, null]
+  cliente_id int [ref: > Cliente.cliente_id]
+  veiculo_id int [ref: > Veiculo.veiculo_id]
+  ponto_retirada_id int [ref: > Ponto_Locacao.ponto_id]
+  ponto_devolucao_id int [ref: > Ponto_Locacao.ponto_id]
+  data_retirada_real datetime
+  data_devolucao_real datetime, null
+  valor_previsto decimal
+  valor_final decimal, null
+  status varchar // em_andamento, finalizada, cancelada
+}
+
+Table Locacao_Adicional {
+  locacao_id int [ref: > Locacao.locacao_id]
+  adicional_id int [ref: > Adicional.adicional_id]
+  Note: 'PK composta: (locacao_id, adicional_id)'
+}
+
+Table Historico_Avarias {
+  avaria_id int [pk, increment]
+  locacao_id int [ref: > Locacao.locacao_id]
+  descricao text
+  data_registro datetime
+}
+
+// Índices úteis
+Ref: Reserva.cliente_id > Cliente.cliente_id
+Ref: Reserva.veiculo_id > Veiculo.veiculo_id
+Ref: Locacao.cliente_id > Cliente.cliente_id
+Ref: Locacao.veiculo_id > Veiculo.veiculo_id

@@ -1,0 +1,35 @@
+Informações para API de Locação de Veículos;
+===================================================
+Clientes:
+Jorge E A Siqueira
+650ca99e-88f5-4685-999a-f1162a6c64c9
+
+eab9d0fb-76bb-4902-9511-2f1ff104e735
+Maria de Jesus
+===================================================
+Carros:
+Chevrolet Ônix 2025
+03c6fa2e-c07f-452f-a7b8-72aadeb55e6e
+DISPONÍVEL
+
+Ford Maverick 2025
+6c8d6bcf-ada3-45bd-beae-4d7d1bf70b90
+ALUGADO
+
+Honda Civic 2020
+f91f7387-7a2a-41e1-8f1d-ff932a8035b6
+ALUGADO
+===================================================
+Pontos de Locação:
+Fortaleza Aeroporto
+1b53545a-036a-4b5d-8b12-f5846eebb9c0
+
+Fortaleza Aldeota
+04f76cd6-fab1-4c51-b1d6-93efe5ba1fc1
+
+Sobral Aeroporto
+f3a4b16f-eb38-432e-a254-43852bf6a838
+
+Sobral Centro
+13bf3a86-2c7f-47aa-9a8f-77f79a443f92
+==================================================

@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <title>API RESTful para Sistema de Locação de Veículos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.2.1/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.2.1/theme/white.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.2.1/plugin/highlight/monokai.min.css">
+    <link rel="stylesheet" href="car-rental-api.css">
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- Slide 01: Título do Projeto -->
+            <section class="intro-slide" data-background-color="#333333">
+                <div class="intro-content">
+                    <h1>MVP</h1>
+                    <h1>Sistema de Locação de Veículos</h1>
+                </div>
+                <aside class="notes">
+                    <li>SLIDE 01</li>
+                </aside>
+            </section>
+
+            <!-- Slide 02: Imagem da Visão Geral do Projeto -->
+            <section class="overview-slide" data-background-color="#333333">
+                <h1>Visão Geral do Projeto</h1>
+
+                <div>
+                    <img class="imagem01" src="imagens/01-VisãoGeralProjeto.png" alt="Imagem Visão Geral Projeto" />
+                </div>
+                <br>
+                <aside class="notes">
+                    <li>SLIDE 02</li>
+                </aside>
+            </section>
+
+            <!-- Slide 03: Texto da Visão Geral do Projeto -->
+            <section data-background-color="#333333">
+                <div>
+                    <p>
+                        Desenvolver um MVP de um sistema de Locação de Veículos, com foco na criação de uma API
+                        funcional.
+                    </p>
+                    <br>
+                    <aside class="notes">
+                        <li>SLIDE 03</li>
+                        <li>MVP = Mínimo Produto Viável</li>
+                        <li>API = Application Program Interface</li>
+                        <li>Foco na criação de uma API funcional e bem estruturada.</li>
+                    </aside>
+                    <aside class="notes">
+                        <li>SLIDE 03</li>
+                    </aside>
+                </div>
+            </section>
+
+            <!-- Slide 04: Imagem do Propósito do Projeto -->
+            <section class="overview-slide" data-background-color="#333333"
+                data-background="imagens/02-PropósitoProjeto.png" data-background-size="40%">
+                <br>
+                <aside class="notes">
+                    <li>SLIDE 04</li>
+                </aside>
+            </section>
+
+            <!-- Slide 05: Imagem do Público Alvo -->
+            <section class="overview-slide" data-background-color="#333333">
+                <h1>Público Alvo</h1>
+
+                <div>
+                    <img class="imagem01" src="imagens/03-PublicoAlvo.png" alt="Imagem Público Alvo" />
+                </div>
+                <br>
+                <aside class="notes">
+                    <li>SLIDE 05</li>
+                    <li>Público Alvo é um grupo específico de pessoas com características em comum, como idade, gênero,
+                        interesses e renda, que são mais propensas a se interessar por um produto, serviço ou mensagem.
+                </aside>
+            </section>
+
+            <!-- Slide 06: Texto Público Alvo -->
+            <section data-background-color="#333333">
+                <div>
+                    <ul>
+                        <li>Clientes: pessoas físicas que desejam alugar veículos de forma prática e rápida.</li>
+                        <br>
+                        <li>Funcionários: responsáveis pelos cadastros e controle das
+                            locações.</li>
+                    </ul>
+                </div>
+                <aside class="notes">
+                    <li>SLIDE 06</li>
+                    <li>Público-alvo é um grupo específico de pessoas com características em comum, como idade, gênero,
+                        interesses e renda, que são mais propensas a se interessar por um produto, serviço ou mensagem.
+                    </li>
+                </aside>
+            </section>
+
+            <!-- Slide 07: Imagem Objetivo MVP -->
+            <section class="overview-slide" data-background-color="#333333">
+                <h1>Objetivo do MVP</h1>
+
+                <div>
+                    <img class="imagem01" src="imagens/04-ObjetivoProjeto.png" alt="Imagem Público Alvo" />
+                </div>
+                <br>
+                <aside class="notes">
+                    <li>SLIDE 07</li>
+                </aside>
+            </section>
+
+            <!-- Slide 08: Texto Objetivos do MVP -->
+            <section data-background-color="#333333">
+                <div>
+                    <ul>
+                        <li>Demonstrar o funcionamento das principais funcionalidades do sistema.</li>
+                        <br>
+                        <li>Validar a viabilidade do projeto a partir de fluxos e testes automatizados</li>
+                        <br>
+                        <li>Implementar uma API REST que simula operações reais de locação</li>
+                        </li>
+                    </ul>
+                </div>
+                <aside class="notes">
+                    <li>SLIDE 08</li>
+                </aside>
+            </section>
+
+            <!-- Slide 09: Imagem Funcinalidades do MVP -->
+            <section class="overview-slide" data-background-color="#333333"
+                data-background="imagens/05-FuncionaliadesMVP.png" data-background-size="40%">
+                <br>
+                <aside class="notes">
+                    <li>SLIDE 09</li>
+                </aside>
+            </section>
+
+            <!-- Slide 10: Texto Funcionalidades Essenciais do MVP -->
+            <section data-background-color="#333333">
+                <div>
+                    <h2>Funcionalidades (Essenciais) do MVP</h2>
+                    <ul>
+                        <li>Gerenciamento de Clientes.</li>
+                        <li>Gerenciamento de Veículos.</li>
+                        <li>Locação de Veículos.</li>
+                    </ul>
+                </div>
+                <aside class="notes">
+                    <li>SLIDE 10</li>
+                    <li>Gerenciamento de Clientes: cadastro, edição, listagem e exclusão.</li>
+                    <li>Gerenciamento de Veículos: controle de disponibilidade e dados da frota.</li>
+                    <li>Locação de Veículos: registro de locações e devoluções.</li>
+                    <li>Cálculo do Valor Total: baseado nas diárias e tempo de utilização.</li>
+                </aside>
+            </section>
+
+            <!-- Slide 11: Texto Funcionalidades Futuras do MVP -->
+            <section data-background-color="#333333">
+                <div>
+                    <h2>Funcionalidades Futuras do MVP</h2>
+                    <ul>
+                        <li>Pagamento online.</li>
+                        <li>Autenticação de usuários.</li>
+                        <li>Relatórios e painel administrativo.</li>
+                    </ul>
+                </div>
+                <aside class="notes">
+                    <li>SLIDE 11</li>
+                </aside>
+            </section>
+
+            <!-- Slide 12: Imagem Requisitos do MVP -->
+            <section class="overview-slide" data-background-color="#333333" data-background="imagens/06-Requisitos.png"
+                data-background-size="40%">
+                <br>
+                <aside class="notes">
+                    <li>SLIDE 12</li>
+                </aside>
+            </section>
+
+
+            <!-- Slide 13: Texto Requisitos Funcionais -->
+            <section data-background-color="#333333">
+                <div>
+                    <h2>Requisitos Funcionais</h2>
+                    <ul>
+                        <li class="fragment">O sistema deve permitir o cadastro de veículos e cadastro de clientes.</li>
+                        <li class="fragment">Deve ser possível criar uma locação, informando veículo, cliente e datas
+                            (retirada/devolução).</li>
+                        <li class="fragment">O sistema calculará automaticamente o valor total da locação.</li>
+                        <li class="fragment">Não será permitido alugar um veículo já em uso.</li>
+                        <li class="fragment">Dados devem ser persistidos no MySQL.</li>
+                    </ul>
+                </div>
+                <aside class="notes">
+                    <li>SLIDE 13</li>
+                </aside>
+            </section>
+
+            <!-- Slide 14: Texto Tecnologas -->
+            <section data-background-color="#333333">
+                <h2>Tecnologias</h2>
+                <hr class="table-line">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tecnologia</th>
+                            <th>Descrição</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="fragment">
+                            <td><strong>Node.js</strong></td>
+                            <td>Assíncrono, performance elevada para APIs</td>
+                        </tr>
+                        <tr class="fragment">
+                            <td><strong>TypeScript</strong></td>
+                            <td>Tipagem estática, produtividade e escalabilidade</td>
+                        </tr>
+                        <tr class="fragment">
+                            <td><strong>Fastify</strong></td>
+                            <td>Servidor Backend. Foco em velocidade e baixo overhead</td>
+                        </tr>
+                        <tr class="fragment">
+                            <td><strong>Prisma ORM</strong></td>
+                            <td>Modelagem e manipulação de dados.</td>
+                        </tr>
+                        <tr class="fragment">
+                            <td><strong>MySQL</strong></td>
+                            <td>Banco relacional robusto</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <hr class="table-line">
+                <aside class="notes">
+                    <li>SLIDE 14</li>
+                    <li>Backend será construído com Node.js, TypeScript e Fastify.</li>
+                    <li>Prisma ORM fará a comunicação com o MySQL.</li>
+                    <p>Abordagem Code First do Prisma: O desenvolvedor define as entidades (tabelas), campos (colunas) e
+                        relacionamentos usando classes ou estruturas de dados no seu código, em vez de escrever SQL
+                        diretamente.
+                    </p>
+                </aside>
+            </section>
+
+            <!-- Slide 15: Imafem Arquitetura e Estrutura do Projeto -->
+            <section data-background-color="#333333">
+                <h2>Arquitetura e Estrutura do Projeto</h2>
+                <img class="print-destaque" src="imagens/API-LocaçãoVeiculos-Fluxo-Projeto.png" alt="Arquitetura">
+                <aside class="notes">
+                    <li>SLIDE 15</li>
+                    <li>Explicar o Fluxo do Request/Response.
+                </aside>
+                </li>
+            </section>
+
+            <!-- Slide 16: Texto Tecnologias Adicionais -->
+            <section data-background-color="#333333">
+                <h2>Tecnologias</h2>
+                <hr class="table-line">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tecnologia</th>
+                            <th>Descrição</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="fragment">
+                            <td><strong>Zod</strong></td>
+                            <td>Biblioteca de validação de dados para JavaScript e TypeScript.</td>
+                        </tr>
+                        <tr class="fragment">
+                            <td><strong>
+                                    ESLint/Prettier>
+                                </strong></td>
+                            <td>Ferramentas para Padronização de código.</td>
+                        </tr>
+                        <tr class="fragment">
+                            <td><strong>Swagger/OpenAPI</strong></td>
+                            <td>Documentação interativa dos endpoints</td>
+                        </tr>
+                        <tr class="fragment">
+                            <td><strong>Insomnia</strong></td>
+                            <td>Testes e simulação de consumo dos endpoints</td>
+                        </tr>
+                        <tr class="fragment">
+                            <td><strong>AdminJS</strong></td>
+                            <td>Painel administrativo ágil para CRUD</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <hr class="table-line">
+                <aside class="notes">
+                    <li>SLIDE 16</li>
+                    <li>Zod será utilizado para validação de dados.</li>
+                    <li>ESLint e Prettier serão aplicados para padronização do código.</li>
+                    <li>Swagger: Documentação da API.< /li>
+                </aside>
+            </section>
+
+            <!-- Slide 17: Texto Escopo do MVP -->
+            <section data-background-color="#333333">
+                <h2>Escopo do MVP</h2>
+                <ul>
+                    <li>Cadastro de Cliente</li>
+                    <li>Cadastro de Veículo</li>
+                    <li>Criação da Locação de Veículo</li>
+                    <li>Cálculo e Encerramento da Locação</li>
+                </ul>
+                <aside class="notes">
+                    <li>SLIDE 17</li>
+                </aside>
+            </section>
+
+            <!-- Slide 18: Imagem dos Entregáveis do MVP -->
+            <section class="overview-slide" data-background-color="#333333">
+                <h1>Entregáveis</h1>
+
+                <div>
+                    <img class="imagem01" src="imagens/07-Entregáveis.png" alt="Imagem Entregáveis do MVP" />
+                </div>
+                <br>
+                <aside class="notes">
+                    <li>SLIDE 18</li>
+                </aside>
+            </section>
+
+            <!-- Slide 19: Imagem Timeline -->
+            <section class="overview-slide" data-background-color="#333333" data-background="imagens/08-Timeline.png"
+                data-background-size="55%">
+                <br>
+                <aside class="notes">
+                    <li>SLIDE 19</li>
+                </aside>
+            </section>
+
+            <!-- Slide 20: Imagem GitHub -->
+            <section data-background-color="#333333" data-background="imagens/GitHub.png" data-background-size="90%">
+                <aside class="notes">
+                    <li>SLIDE 20</li>
+                </aside>
+            </section>
+
+            <!-- Slide 21: Imagem GitHub-Projects -->
+            <section data-background-color="#333333" data-background="imagens/GitHub-Projects.png"
+                data-background-size="90%">
+                <aside class="notes">
+                    <li>SLIDE 21</li>
+                </aside>
+            </section>
+
+            <!-- Slide 22: Imagem Modelo Banco de Dados -->
+            <section data-background-color="#333333">
+                <h2>Modelo Banco de Dados</h2>
+                <img class="print-BD" src=" imagens/Modelo-BD.png" alt="Banco de Dados">
+                <aside class="notes">
+                    <li>SLIDE 22</li>
+                    <li>Explicar o Modelo do Banco de Dados.
+                </aside>
+                </li>
+            </section>
+
+            <!-- Slide 23: Print Insomnia -->
+            <section data-background-color="#333333" data-background="imagens/GET Cliente específico.png"
+                data-background-size="90%">
+                <aside class="notes">
+                    <li>SLIDE 23</li>
+                </aside>
+            </section>
+
+            <!-- Slide 24: Imagem Erro Insomnia -->
+            <section data-background-color="#333333" data-background="imagens/Erro Cliente.png">
+                <aside class="notes">
+                    <li>SLIDE 24</li>
+                </aside>
+            </section>
+
+            <!-- Slide 25: Imagem Swagger -->
+            <section data-background-color="#333333" data-background="imagens/Swagger-1.png" data-background-size="90%">
+                <aside class="notes">
+                    <li>SLIDE 25</li>
+                </aside>
+            </section>
+
+            <!-- Slide 26: Imagem FrontEnd-Tela01 -->
+            <section data-background-color="#333333" data-background="imagens/Tela 01.png" data-background-size="60%">
+                <aside class="notes">
+                    <li>SLIDE 26</li>
+                </aside>
+            </section>
+
+            <!-- Slide 27: Imagem FrontEnd-Tela02 -->
+            <section data-background-color="#333333" data-background="imagens/Tela 02.png" data-background-size="60%">
+                <aside class="notes">
+                    <li>SLIDE 27</li>
+                </aside>
+            </section>
+
+            <!-- Slide 28: Imagem FrontEnd-Tela03 -->
+            <section data-background-color="#333333" data-background="imagens/Tela 03.png" data-background-size="60%">
+                <aside class="notes">
+                    <li>SLIDE 28</li>
+                </aside>
+            </section>
+
+            <!-- Slide 29: Imagem FrontEnd-Tela04 -->
+            <section data-background-color="#333333" data-background="imagens/Tela 04.png" data-background-size="60%">
+                <aside class="notes">
+                    <li>SLIDE 29</li>
+                </aside>
+            </section>
+
+            <!-- Slide 30: Imagem Equipe Projeto -->
+            <section data-background-color="#333333">
+                <h2><u>Equipe do Projeto</u></h2>
+                <div class="container">
+                    <div class="dev">
+                        <img class="dev1" data-background-size="80%" src="imagens/Final-Jorge-2.png"
+                            alt="Jorge Siqueira">
+                        <p class="nome">Jorge Eduardo</p>
+                    </div>
+                    <div class="dev">
+                        <img class="dev1" src="imagens/Final-Jonathan-2.png" alt="Jonathan">
+                        <p class="nome">Jonathan</p>
+                    </div>
+                    <br>
+                </div>
+                <aside class="notes">
+                    <li>SLIDE 30</li>
+                </aside>
+            </section>
+
+            <!-- Slide 31: Dúvidas -->
+            <section data-background-color="#333333" data-background="imagens/Dúvidas.png" data-background-size="50%">
+                <aside class="notes">
+                    <li>SLIDE 31</li>
+                </aside>
+            </section>
+
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.2.1/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.2.1/plugin/highlight/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.2.1/plugin/notes/notes.min.js"></script>
+
+    <script>
+        // Assumindo que você está usando a sintaxe clássica de CDN, 
+        // os objetos globais (como RevealHighlight, RevealNotes) 
+        // são criados automaticamente quando o script é carregado.
+
+        Reveal.initialize({
+            hash: true,
+            plugins: [
+                RevealHighlight,
+                RevealNotes // <-- ADICIONE ESTA LINHA
+            ],
+            highlight: { highlightOnLoad: true }
+        });
+    </script>
+</body>
+
+</html>

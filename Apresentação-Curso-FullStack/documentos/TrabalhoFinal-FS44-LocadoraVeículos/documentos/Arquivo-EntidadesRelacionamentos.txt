@@ -1,0 +1,93 @@
+Table clientes {
+  id int [pk, increment]
+  nome varchar
+  cpf varchar [unique]
+  email varchar [unique]
+  telefone varchar
+  cnh varchar
+  endereco text
+  referencias text
+  senha_hash varchar
+  ativo boolean
+}
+
+Table funcionarios {
+  id int [pk, increment]
+  nome varchar
+  email varchar [unique]
+  senha_hash varchar
+  tipo_acesso varchar
+  ativo boolean
+}
+
+Table veiculos {
+  id int [pk, increment]
+  marca varchar
+  modelo varchar
+  ano int
+  placa varchar [unique]
+  cor varchar
+  num_portas int
+  combustivel varchar
+  valor_diaria decimal
+  status varchar
+  data_entrada date
+  acessorios text
+}
+
+Table reservas {
+  id int [pk, increment]
+  cliente_id int [ref: > clientes.id]
+  veiculo_id int [ref: > veiculos.id]
+  data_inicio datetime
+  data_fim datetime
+  protocolo varchar
+  status varchar
+  valor_estimado decimal
+}
+
+Table locacoes {
+  id int [pk, increment]
+  cliente_id int [ref: > clientes.id]
+  funcionario_id int [ref: > funcionarios.id]
+  veiculo_id int [ref: > veiculos.id]
+  reserva_id int [ref: > reservas.id]
+  data_inicio datetime
+  data_fim datetime
+  data_devolucao datetime
+  quilometragem_inicio int
+  quilometragem_fim int
+  combustivel_inicio varchar
+  combustivel_fim varchar
+  adicionais text
+  valor_final decimal
+  status varchar
+}
+
+Table multas {
+  id int [pk, increment]
+  locacao_id int [ref: > locacoes.id]
+  descricao text
+  valor decimal
+  data date
+  paga boolean
+}
+
+Table manutencoes {
+  id int [pk, increment]
+  veiculo_id int [ref: > veiculos.id]
+  tipo varchar
+  descricao text
+  data date
+  quilometragem int
+  custo_estimado decimal
+}
+
+Table pagamentos {
+  id int [pk, increment]
+  locacao_id int [ref: > locacoes.id]
+  tipo_pagamento varchar
+  valor decimal
+  status varchar
+  data_pagamento datetime
+}

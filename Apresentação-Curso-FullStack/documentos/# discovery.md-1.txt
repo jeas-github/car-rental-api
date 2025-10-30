@@ -1,0 +1,37 @@
+            <!-- Slide 13: Estrutura da API e Endpoints -->
+            <section class="align-left">
+                <h2>(Alguns) Principais Endpoints RESTful</h2>
+                <ul>
+                    <li class="fragment"><code>POST /vehicles</code> &mdash; Cadastrar veículo</li>
+                    <li class="fragment"><code>GET /vehicles</code> &mdash; Listar veículos</li>
+                    <li class="fragment"><code>GET /vehicles/{id}</code> &mdash; Consultar veículo</li>
+                    <li class="fragment"><code>PUT /vehicles/{id}</code> &mdash; Atualizar veículo</li>
+                    <li class="fragment"><code>POST /rentals</code> &mdash; Criar locação</li>
+                    <li class="fragment"><code>GET /rentals</code> &mdash; Listar locações</li>
+                    <li class="fragment"><code>PUT /rentals/{id}</code> &mdash; Atualizar locação</li>
+                </ul>
+                <aside class="notes">Mostre os principais padrões REST e a clareza dos endpoints.</aside>
+            </section>
+
+            <!-- Slide 8: Demonstração e Funcionalidades (Opcional) -->
+            <section>
+                <h2>Demonstração e Funcionalidades</h2>
+                <ol>
+                    <li class="fragment">Cadastrar um veículo</li>
+                    <li class="fragment">Consultar lista de veículos</li>
+                    <li class="fragment">Criar uma locação de veículo disponível</li>
+                    <li class="fragment">Visualizar no painel AdminJS</li>
+                </ol>
+                <aside class="notes">Sugira o roteiro para a demonstração, simulando o fluxo na prática.</aside>
+            </section>
+
+            <!-- Slide 9: Conclusão e Próximos Passos -->
+            <section>
+                <h2>Conclusão</h2>
+                <ul>
+                    <li class="fragment"><strong>Resumo:</strong> API funcional, escalável e alinhada com mercado</li>
+                    <li class="fragment">Agradecimento</li>
+                </ul>
+                <aside class="notes">Encerre mostrando potencial de evolução e abertura para dúvidas.</aside>
+            </section>
+

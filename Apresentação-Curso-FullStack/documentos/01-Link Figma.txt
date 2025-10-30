@@ -1,0 +1,10 @@
+Links 
+Figma
+https://www.figma.com/design/i1AOSEz6bkxEia2vE7J9Qv/MOVE-ON?node-id=0-1&p=f&t=Kkivu6tmWCT8aPV2-0
+
+AdminJS
+http://127.0.0.1:3333/admin
+
+Comando 
+npm run start:dev
+

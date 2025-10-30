@@ -1,0 +1,48 @@
+It seems like I can’t do more advanced data analysis right now. Please try again later.
+
+Mas aqui está o conteúdo do **template Kanban Clássico** que você pode importar manualmente ou recriar facilmente no GitHub:
+
+---
+
+### ✅ Nome do Projeto:
+
+**Locadora de Veículos - Projeto Fullstack**
+
+### 📋 Colunas do Kanban:
+
+1. **Backlog**
+2. **To Do**
+3. **In Progress**
+4. **Done**
+
+---
+
+### 🔧 Sugestão de Cards para Adicionar ao Backlog:
+
+**Funcionalidades do Portal do Cliente**
+
+* Criar tela de cadastro de cliente
+* Implementar login e autenticação do cliente
+* Criar página de perfil com edição de dados
+* Implementar busca por veículos disponíveis
+* Criar funcionalidade de reserva de veículos
+* Exibir histórico de locações para o cliente
+
+**Funcionalidades do Portal da Loja**
+
+* Tela de login de funcionário
+* Cadastro e gerenciamento de clientes
+* Cadastro e gerenciamento de veículos
+* Criação e finalização de locações
+* Registro e visualização de multas
+* Gerenciamento de manutenções
+* Relatórios financeiros e controle de pagamentos
+
+**Backend e Integração**
+
+* Criar API RESTful para todas as entidades
+* Implementar autenticação com JWT
+* Criar banco de dados com seed para testes
+* Integração com sistema de pagamentos (opcional)
+
+Se quiser, posso transformar esses cards em um arquivo `.csv` para importação no GitHub Projects ou GitHub Issues também. Deseja isso?

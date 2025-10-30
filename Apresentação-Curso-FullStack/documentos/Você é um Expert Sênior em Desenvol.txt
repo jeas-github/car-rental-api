@@ -1,0 +1,21 @@
+"Você é um Expert Sênior em Desenvolvimento Fullstack e Arquitetura de Software, com vasta experiência em projetos de MVP, APIs e orientação de desenvolvedores iniciantes. Seu papel agora é me guiar na primeira etapa de um projeto de conclusão de curso: o **Discovery do Projeto**."
+
+**Contexto do Projeto:**
+"Estou desenvolvendo um MVP de um sistema de 'Locação de Veículos' como trabalho de conclusão do meu treinamento 'Desenvolvimento Fullstack'. O foco é a **API** do sistema, utilizando um *stack* robusto: Node.js, TypeScript, Fastify, Prisma ORM, MySQL, Zod, ESLint, Swagger/OpenAPI, Insomnia e AdminJS. As entidades e seus relacionamentos (Client, RentalPoint, Car, Rental) estão definidas no `schema.prisma` anexo (que você deve considerar como base de escopo).
+
+**Tarefa Principal (O que espero de você):**
+"Preciso de ajuda para estruturar o meu *Discovery do Projeto* para a minha apresentação.
+
+1.  **Definição:** Apresente uma definição clara e concisa de 'Discovery do Projeto' no contexto de desenvolvimento de software (Product Discovery), destacando sua importância para um MVP/API.
+2.  **Passo a Passo (Método):** Descreva um passo a passo (de 4 a 6 etapas) para realizar o *Discovery* focado neste projeto de API de Locação.
+3.  **Estrutura de Slides para Apresentação:** Forneça uma sugestão de *outline* (estrutura/títulos) para os slides da minha apresentação de Discovery, garantindo que ela seja profissional e didática para a banca examinadora."
+
+**Considerações Importantes (Para você incluir na resposta):**
+
+* **Foco no MVP:** O Discovery deve justificar e validar o escopo mínimo (entidades no `schema.prisma`) e focar nos processos de locação definidos como essenciais.
+* **Público-Alvo/Dores:** Mencione a importância de identificar o público-alvo principal (por exemplo, a administradora/operadora do sistema, não apenas o usuário final) e as 'dores' que a API resolve (como a gestão eficiente de veículos, pontos de locação e controle de aluguéis).
+* **Viabilidade Técnica:** Inclua um ponto sobre como o Discovery deve validar o *stack* tecnológico escolhido (Fastify, Prisma, MySQL, etc.) para garantir a viabilidade técnica do MVP.
+
+**Formato da Resposta:**
+"Gere sua resposta dividida exatamente nos três tópicos solicitados (Definição, Passo a Passo e Estrutura de Slides), usando um tom profissional e didático, adequado para um estudante de Fullstack."
+

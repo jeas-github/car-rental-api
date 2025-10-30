@@ -1,0 +1,28 @@
+Estou participando de um treinamento presencial denominado "Desenvolvimento Fullstack" e como trabalho de conclusão de curso foi passada uma tarefa para desenvolver um sistema de "Locação de Veículos" com foco no desenvolvimento da API desse sistema. A seguir apresento os entregáveis que o professor relacionou para um guia do aluno:
+01. Discovery do Projeto
+02. Gerenciamento das Tarefas/do Projeto
+03. Prototipação de telas (opcional)
+04.  Implementação Frontend (opcional)
+05. API
+06.  Documentação dos Endpoints
+07. Desenho do Banco de Dados
+08. Testes automatizados dos endpoints
+09. Testes unitários (50%)
+10. Repositório aberto no Github
+11. Apresentação do Projeto no último dia
+Eu já avancei no desenvolvimento da API do sistema usando as seguintes tecnologias:
+01. Node.js
+02. TypeScript
+03. Fastify
+04. Prisma ORM
+05. MySQL
+06. Zod
+07. ESLint
+08. Swagger/OpenAPI
+09. Insomnia
+10. AdminJS
+O sistema não pretende ser uma aplicação completa mas apenas um MVP, para o qual definimos apenas alguns processos. As entidades e relacionamentos estão descritos no arquivo "schema.prisma" anexado.
+De acordo com o enunciado acima gere um prompt bem inteligente para eu submeter ao ChatGpt solicitando que ele aja como um expert em desenvolvimento Fullstack e me ajude como um programador iniciante a, primeiramente, definir um Discovery para o meu Projeto definindo o significado do Discovery e mostrando um passo a passo para eu incluir os slides da minha apresentação para o Discovery do meu projeto de acordo com o guia do aluno acima. Você pode incluir no prompt algumas considerações que você achar importantes para a descrição do Discovery do meu projeto.
+
+
+

@@ -1,0 +1,8 @@
+Estou participando de um treinamento presencial chamado "Desenvolvimento Fullstack" em uma escola chamada Digital College.  Recebemos uma tarefa para elaborar um trabalho de conclusão de curso que consiste no desenvolvimento de uma aplicação Full Stack para um sistema de Locadora de Automóveis. Uma descrição ampla desse sistema seria: "Sistema para aluguel de veículos com controle de frota, reservas, devoluções, cálculo de tarifas por período, histórico de locações e multas."
+Desenvolvi um arquivo, que se encontra anexado, contendo os processos (Requisitos funcionais) para o Sistema de Locações de Veículos. Eu sei que um sistema de locação de veículos pode ser muito complexo e por isso optei por reduzir o escopo do sistema e por isso descrevi os processos orientados para locação de veículos apenas para pessoas físicas.
+Aja como um expert em Desenvolvimento Fullstack e me ajude a analisar os processos que estão descritos no arquivo anexado. Revise os processos, aponte inconsistências, sugira mudanças e para cada processo, descubra as entidades com respectivos atributos que fazem parte do escopo definido acima (locação de veículos apenas para pessoas físicas) para esse projeto. Isso me ajudará a entender as Entidades envolvidas no Sistema e as tabelas do Banco de Dados que terei que definir para meu sistema.
+
+
+
+
+

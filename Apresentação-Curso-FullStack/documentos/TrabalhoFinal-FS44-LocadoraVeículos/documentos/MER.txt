@@ -1,0 +1,117 @@
+// ==========================
+// SISTEMA DE LOCAÇÃO DE VEÍCULOS (MVP COMPLETO)
+// ==========================
+
+Table clientes {
+  id int [pk, increment]
+  nome varchar
+  email varchar [unique]
+  senha varchar
+  cpf varchar [unique]
+  cnh varchar [unique]
+  data_nascimento date
+  telefone varchar
+  created_at datetime
+  updated_at datetime
+}
+
+Table funcionarios {
+  id int [pk, increment]
+  nome varchar
+  email varchar [unique]
+  senha varchar
+  cargo varchar
+  created_at datetime
+  updated_at datetime
+}
+
+Table veiculos {
+  id int [pk, increment]
+  placa varchar [unique]
+  modelo varchar
+  marca varchar
+  ano int
+  cor varchar
+  tipo varchar
+  diaria decimal
+  status varchar // disponível, alugado, manutenção
+  created_at datetime
+  updated_at datetime
+}
+
+Table acessorios {
+  id int [pk, increment]
+  nome varchar
+}
+
+Table veiculo_acessorios {
+  id int [pk, increment]
+  veiculo_id int [ref: > veiculos.id]
+  acessorio_id int [ref: > acessorios.id]
+}
+
+Table produtos_adicionais {
+  id int [pk, increment]
+  nome varchar
+  descricao text
+  valor decimal
+  ativo boolean
+}
+
+Table reservas {
+  id int [pk, increment]
+  cliente_id int [ref: > clientes.id]
+  veiculo_id int [ref: > veiculos.id]
+  data_inicio datetime
+  data_fim datetime
+  status varchar // pendente, confirmada, cancelada
+  created_at datetime
+  updated_at datetime
+}
+
+Table reserva_produtos {
+  id int [pk, increment]
+  reserva_id int [ref: > reservas.id]
+  produto_adicional_id int [ref: > produtos_adicionais.id]
+  quantidade int
+}
+
+Table locacoes {
+  id int [pk, increment]
+  reserva_id int [ref: > reservas.id]
+  funcionario_id int [ref: > funcionarios.id]
+  data_inicio datetime
+  data_fim datetime
+  valor_total decimal
+  status varchar // ativa, finalizada
+  created_at datetime
+  updated_at datetime
+}
+
+Table multas {
+  id int [pk, increment]
+  locacao_id int [ref: > locacoes.id]
+  tipo varchar
+  valor decimal
+  data_ocorrencia date
+  observacoes text
+  created_at datetime
+}
+
+Table pagamentos {
+  id int [pk, increment]
+  locacao_id int [ref: > locacoes.id]
+  forma_pagamento varchar // pix, dinheiro, cartao_credito, cartao_debito
+  valor_pago decimal
+  data_pagamento datetime
+  status varchar // pago, pendente, falhou
+}
+
+Table tarifas {
+  id int [pk, increment]
+  tipo_veiculo varchar // SUV, hatch, sedan, etc
+  valor_diaria decimal
+  data_inicio date
+  data_fim date
+  observacao text
+}

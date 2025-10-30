@@ -1,0 +1,99 @@
+# discovery.md
+
+## 1. Visão Geral do Projeto
+
+Este projeto tem como objetivo desenvolver um MVP (Mínimo Produto Viável) de um sistema de Locação de Veículos, com foco na criação de uma API funcional e bem estruturada. A aplicação permitirá que clientes realizem locações de veículos e que a empresa gerencie sua frota e reservas de forma prática e eficiente.
+
+### Propósito
+
+Validar a proposta de um sistema digital de locação de veículos capaz de:
+
+- Centralizar informações sobre clientes e frota.
+- Automatizar processos de locação e devolução.
+- Demonstrar viabilidade técnica e de negócio do produto.
+
+### Público-Alvo
+
+- **Clientes:** pessoas físicas que desejam alugar veículos de forma prática.
+- **Funcionários:** responsáveis pelo cadastro e controle das locações.
+
+---
+
+## 2. Objetivos do MVP
+
+- Implementar uma API REST que simula operações reais de locação.
+- Demonstrar o funcionamento das principais funcionalidades do sistema.
+- Validar a viabilidade do projeto a partir de fluxos e testes automatizados.
+
+---
+
+## 3. Funcionalidades do MVP
+
+### Funcionalidades Essenciais
+
+- 
+- 
+- 
+
+### Funcionalidades Futuras (fora do escopo do MVP)
+
+- 
+- 
+- 
+
+---
+
+## 4. Requisitos Funcionais
+
+
+---
+
+## 5. Requisitos Não Funcionais
+
+O 
+O sistema deve ser simples, modular e de fácil manutenção.
+
+---
+
+## 6. Escopo do MVP
+
+O MVP mostrará um fluxo funcional completo:
+
+- Cadastro de cliente.
+- Cadastro de veículo.
+- Criação de locação.
+- Cálculo e encerramento da locação.
+
+Essa versão é suficiente para validar a proposta do produto e comprovar sua viabilidade técnica.
+
+---
+
+--
+
+## 8. Entregáveis
+
+A partir deste Discovery, serão entregues:
+
+- **API funcional** com rotas REST.
+- **Banco de dados relacional modelado no Prisma.**
+- **Documentação detalhada dos endpoints.**
+- **Testes automatizados de integração e unidade.**
+- **Repositório público no GitHub.**
+
+---
+
+## 9. Métrica de Validação do MVP
+
+O MVP será considerado validado se:
+
+- Permitir o cadastro, listagem e exclusão de clientes e veículos.
+- Registrar e finalizar locações corretamente.
+- Calcular o valor da locação conforme os dias alugados.
+- Passar nos testes automatizados principais (ex: aluguel e devolução).
+
+---
+
+## 10. Conclusão
+
+O MVP de Locação de Veículos propõe uma base sólida de backend, priorizando qualidade e boas práticas no desenvolvimento.  
+Seu objetivo é **provar a viabilidade** técnica e funcional do produto, servindo como ponto inicial para futuras evoluções, como autenticação, relatórios e interface web.

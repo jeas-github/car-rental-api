@@ -1,0 +1,30 @@
+Estou participando de um treinamento chamado "Desenvolvimento Fullstack" e recebemos a tarefa para elaborar um trabalho de conclusão de curso que consiste no desenvolvimento de uma aplicação Full Stack para um sistema de Locadora de Automóveis. Uma descrição ampla desse sistema seria: Sistema para aluguel de veículos com controle de frota, reservas, devoluções, cálculo de tarifas por período, histórico de locações e multas.
+Aja como um expert em Desenvolvimento Fullstack e me ajude a desenvolver esse sistema documentando todos os passos desse processo. 
+Abaixo estão descritas orientações para a elaboração desse trabalho:
+Trabalho Final do Curo de Desenvolvimento Fullstack:
+DESCRIÇÃO
+Criar um MVP (Mínimo Produto Viável), focando no código, mas também no processo de desenvolvimento, desde a concepção da ideia até a entrega final.
+Informações Importantes
+Data da apresentação: 16/10/2025 Local: Auditório Jeff Bezos (DC, andar 1)
+ENTREGÁVEIS
+•	 Discovery do Projeto
+•	 Gerenciamento das Tarefas/do Projeto
+•	 Prototipação de telas (opcional)
+•	 Implementação Frontend (opcional)
+•	 API
+•	 Documentação dos Endpoints
+•	 Desenho do banco de dados
+•	 Testes automatizados dos Endpoints
+•	 Testes unitários (50%)
+•	 Repositório aberto no Github
+•	 Apresentação do Projeto no último dia
+Sugestão de passo a passo
+1.	Criar o repositório
+2.	Criar um arquivo discovery.md ou em alguma ferramenta de documentação, e ir descrevendo o projeto, requisitos etc.
+3.	Criar um Projeto Board (Kanban/Scrum)
+4.	Criar as tarefas/issues (com os requisitos mínimos)
+5.	Desenhar o banco de dados (definindo tabelas, relacionamentos etc.)
+6.	Iniciar documentação dos endpoints
+7.	Começar a fazer o código
+8.	Criar os testes automatizados
+Inicialmente defina o que você acha que seriam os entregáveis, descritos acima, tecendo orientações e sugestões para um desenvolvimento bem orientado e seguindo as boas práticas de mercado. Você pode sugerir ferramentas e tecnologias para elaborar cada fase do desenvolvimento do projeto.

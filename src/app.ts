@@ -1,10 +1,10 @@
 import { fastify } from "fastify";
 import { fastifyCors } from "@fastify/cors";
 import {
-  validatorCompiler,
-  serializerCompiler,
-  ZodTypeProvider,
-  jsonSchemaTransform,
+   validatorCompiler,
+   serializerCompiler,
+   ZodTypeProvider,
+   jsonSchemaTransform,
 } from "fastify-type-provider-zod";
 import fastifySwagger from "@fastify/swagger";
 import fastifySwaggerUi from "@fastify/swagger-ui";
@@ -41,18 +41,18 @@ app.register(fastifyCors, { origin: "*" });
 app.register(adminPlugin);
 
 app.register(fastifySwagger, {
-  openapi: {
-    info: {
-      title: "Car Rental API",
-      description: "API for managing car rentals",
-      version: "1.0.0",
-    },
-  },
-  transform: jsonSchemaTransform,
+   openapi: {
+      info: {
+         title: "Car Rental API",
+         description: "API for managing car rentals",
+         version: "1.0.0",
+      },
+   },
+   transform: jsonSchemaTransform,
 });
 
 app.register(fastifySwaggerUi, {
-  routePrefix: "/docs",
+   routePrefix: "/docs",
 });
 
 app.setErrorHandler((error, request, reply) => {
@@ -72,3 +72,17 @@ app.setErrorHandler((error, request, reply) => {
 });
 
 app.register(routesPlugin);
+
+app.get("/", async (request, reply) => {
+   reply.type("text/html; charset=utf-8").send(`
+    <h1>Seja Bem Vindo à API de Locação de Veículos!</h1>
+    <h2>Explore os Recursos Disponíveis:</h2>
+    <ul>
+      <li><strong>HTTP Server Running!</strong><a href="/">${request.hostname}</a></li>
+      <br>
+      <li><strong>HTTP AdminJS Server Running!</strong> <a href="/admin">${request.hostname}/admin</a></li>
+      <br>
+      <li><strong>HTTP OpenAPI Server Running!</strong> <a href="/docs">${request.hostname}/docs</a></li>
+    </ul>
+  `);
+});

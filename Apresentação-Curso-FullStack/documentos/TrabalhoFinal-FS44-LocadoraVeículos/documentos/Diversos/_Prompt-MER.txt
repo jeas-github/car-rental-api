@@ -1,0 +1,6 @@
+Estou participando de um treinamento presencial chamado "Desenvolvimento Fullstack" em uma escola chamada Digital College.  Recebemos uma tarefa para elaborar um trabalho de conclusão de curso que consiste no desenvolvimento de uma aplicação Full Stack para um sistema de Locadora de Automóveis. Uma descrição ampla desse sistema seria: "Sistema para aluguel de veículos com controle de frota, reservas, devoluções, cálculo de tarifas por período, histórico de locações e multas."
+
+Desenvolvi um arquivo, que se encontra anexado, contendo os processos para um MVP de um Sistema de Locações de Veículos. 
+Sabendo que um Sistema de Locação de Veículos é bem complexo optei por reduzir o escopo do sistema e por isso descrevi os processos de um MVP orientado para locação de veículos apenas para pessoas físicas.
+
+Aja como um expert em Desenvolvimento Fullstack, analise os processos que estão descritos no arquivo anexado e me ajude a definir as Entidades, atributos e relacionamentos desse sistema. Gere também um arquivo para que eu possa ter uma visualização gráfica do MER na ferramenta "https://dbdiagram.io/d". 

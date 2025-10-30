@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <title>API RESTful para Sistema de Locação de Veículos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.2.1/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.2.1/theme/white.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.2.1/plugin/highlight/monokai.min.css">
+    <link rel="stylesheet" href="car-rental-api.css">
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- Slide 01: Título do Projeto -->
+            <section data-background="#333333">
+                <h1>MVP</h1>
+                <h1>Sistema de Locação de Veículos</h1>
+                <aside class="notes">
+                    <li>SLIDE 01</li>
+                </aside>
+
+            </section>
+
+            <!-- Slide 02: Objetivo do Projeto -->
+            <section>
+                <div>
+                    <h2>Visão Geral do Projeto</h2>
+                    Desenvolver um MVP de um sistema de Locação
+                    de Veículos, com foco na criação de uma API funcional.
+                </div>
+                <aside class="notes">
+                    <li>SLIDE 02</li>
+                    <li>MVP = Mínimo Produto Viável</li>
+                    <li>API = Application Program Interface</li>
+                    <li>Foco na criação de uma API funcional e bem estruturada.</li>
+                </aside>
+            </section>
+
+            <!-- Slide 03: Propósito do Projeto -->
+            <section>
+                <div>
+                    <h2>Propósito do Projeto</h2>
+                    <ul>
+                        <li class="fragment">Centralizar informações sobre clientes e frota</li>
+                        <li class="fragment">Automatizar processos de locação e devolução</li>
+                        <li class="fragment">Demonstrar viabilidade técnica e de negócio do produto</li>
+                    </ul>
+                </div>
+                <aside class="notes">
+                    <li>SLIDE 03</li>
+                    <li>Validar a proposta de um sistema digital de locação de veículos focado na API do sistema capaz
+                        de:</li>
+                </aside>
+            </section>
+
+            <!-- Slide 04: Público Alvo -->
+            <section>
+                <div>
+                    <h2>Público Alvo do Projeto</h2>
+                    <ul>
+                        <li class="fragment">Clientes: pessoas físicas que desejam alugar veículos de forma prática</li>
+                        <li class="fragment">Funcionários: responsáveis pelos cadastros e controle das
+                            locações.</li>
+                    </ul>
+                </div>
+                <aside class="notes">
+                    <li>SLIDE 04</li>
+                    <li>Público-alvo é um grupo específico de pessoas com características em comum, como idade, gênero,
+                        interesses e renda, que são mais propensas a se interessar por um produto, serviço ou mensagem.
+                    </li>
+                </aside>
+            </section>
+
+            <!-- Slide 05: Objetivos do MVP -->
+            <section>
+                <div>
+                    <h2>Objetivos do MVP</h2>
+                    <ul>
+                        <li class="fragment">Implementar uma API REST que simula operações reais de locação</li>
+                        <li class="fragment">Demonstrar o funcionamento das principais funcionalidades do sistema.</li>
+                        <li class="fragment">Validar a viabilidade do projeto a partir de fluxos e testes automatizados
+                        </li>
+                    </ul>
+                </div>
+                <aside class="notes">
+                    <li>SLIDE 05</li>
+                    <li>Sem anotações Importantes</li>
+                </aside>
+            </section>
+
+            <!-- Slide 06: Funcionalidades Essenciais do MVP -->
+            <section>
+                <div>
+                    <h2>Funcionalidades (Essenciais) do MVP</h2>
+                    <ul>
+                        <li class="fragment">Gerenciamento de Clientes.</li>
+                        <li class="fragment">Gerenciamento de Veículos.</li>
+                        <li class="fragment">Locação de Veículos.</li>
+                    </ul>
+                </div>
+                <aside class="notes">
+                    <li>SLIDE 06</li>
+                    <li>Gerenciamento de Clientes: cadastro, edição, listagem e exclusão.</li>
+                    <li>Gerenciamento de Veículos: controle de disponibilidade e dados da frota.</li>
+                    <li>Locação de Veículos: registro de locações e devoluções.</li>
+                    <li>Cálculo do Valor Total: baseado nas diárias e tempo de utilização.</li>
+                </aside>
+            </section>
+
+            <!-- Slide 07: Funcionalidades Futuras do MVP -->
+            <section>
+                <div>
+                    <h2>Funcionalidades Futuras do MVP</h2>
+                    <ul>
+                        <li class="fragment">Pagamento online.</li>
+                        <li class="fragment">Autenticação de usuários.</li>
+                        <li class="fragment">Relatórios e painel administrativo.</li>
+                    </ul>
+                </div>
+                <aside class="notes">
+                    <li>SLIDE 07</li>
+                    <li>Sem anotações Importantes</li>
+                </aside>
+            </section>
+
+            <!-- Slide 08: Requisitos Funcionais -->
+            <section>
+                <div>
+                    <h2>Requisitos Funcionais</h2>
+                    <ul>
+                        <li class="fragment">O sistema deve permitir o cadastro de veículos e cadastro de clientes.</li>
+                        <li class="fragment">Deve ser possível criar uma locação, informando veículo, cliente e datas
+                            (retirada/devolução).</li>
+                        <li class="fragment">O sistema calculará automaticamente o valor total da locação.</li>
+                        <li class="fragment">Não será permitido alugar um veículo já em uso.</li>
+                        <li class="fragment">Todos os dados devem ser persistidos em um banco relacional MySQL.</li>
+                    </ul>
+                </div>
+                <aside class="notes">
+                    <li>SLIDE 08</li>
+                    <li>Sem anotações Importantes</li>
+                </aside>
+            </section>
+
+            <!-- Slide 09: Requisitos Não Funcionais -->
+            <section>
+                <h2>Requisitos Não Funcionais</h2>
+                <hr class="table-line">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tecnologia</th>
+                            <th>Descrição</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="fragment">
+                            <td><strong>Node.js</strong></td>
+                            <td>Assíncrono, performance elevada para APIs</td>
+                        </tr>
+                        <tr class="fragment">
+                            <td><strong>TypeScript</strong></td>
+                            <td>Tipagem estática, produtividade e escalabilidade</td>
+                        </tr>
+                        <tr class="fragment">
+                            <td><strong>Fastify</strong></td>
+                            <td>Servidor Backend. Foco em velocidade e baixo overhead</td>
+                        </tr>
+                        <tr class="fragment">
+                            <td><strong>Prisma ORM</strong></td>
+                            <td>Modelagem e manipulação de dados.</td>
+                        </tr>
+                        <tr class="fragment">
+                            <td><strong>MySQL</strong></td>
+                            <td>Banco relacional robusto</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <hr class="table-line">
+                <aside class="notes">
+                    <li>SLIDE 09</li>
+                    <li>Backend será construído com Node.js, TypeScript e Fastify.</li>
+                    <li>Prisma ORM fará a comunicação com o MySQL.</li>
+                    <p>Abordagem Code First do Prisma: O desenvolvedor define as entidades (tabelas), campos (colunas) e
+                        relacionamentos usando classes ou estruturas de dados no seu código, em vez de escrever SQL
+                        diretamente.
+                    </p>
+                </aside>
+            </section>
+
+            <!-- Slide 10: Arquitetura e Estrutura do Projeto -->
+            <section>
+                <h2>Arquitetura e Estrutura do Projeto</h2>
+                <img class="print-destaque" src="imagens/API-LocaçãoVeiculos-Fluxo-Projeto.png" alt="Arquitetura">
+                <aside class="notes">
+                    <li>SLIDE 10</li>
+                    <li>Explicar o Fluxo do Request/Response.
+                </aside>
+                </li>
+            </section>
+
+            <!-- Slide 11: Requisitos Não Funcionais (Continuação) -->
+            <section>
+                <h2>Requisitos Não Funcionais</h2>
+                <hr class="table-line">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tecnologia</th>
+                            <th>Descrição</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="fragment">
+                            <td><strong>Zod</strong></td>
+                            <td>Biblioteca de validação de dados para JavaScript e TypeScript.</td>
+                        </tr>
+                        <tr class="fragment">
+                            <td><strong>
+                                    ESLint/Prettier>
+                                </strong></td>
+                            <td>Ferramentas para Padronização de código.</td>
+                        </tr>
+                        <tr class="fragment">
+                            <td><strong>Swagger/OpenAPI</strong></td>
+                            <td>Documentação interativa dos endpoints</td>
+                        </tr>
+                        <tr class="fragment">
+                            <td><strong>Insomnia</strong></td>
+                            <td>Testes e simulação de consumo dos endpoints</td>
+                        </tr>
+                        <tr class="fragment">
+                            <td><strong>AdminJS</strong></td>
+                            <td>Painel administrativo ágil para CRUD</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <hr class="table-line">
+                <aside class="notes">
+                    <li>SLIDE 11</li>
+                    <li>Zod será utilizado para validação de dados.</li>
+                    <li>ESLint e Prettier serão aplicados para padronização do código.</li>
+                    <li>Swagger: Documentação da API.< /li>
+                </aside>
+            </section>
+
+            <!-- Slide 12: Escopo do MVP -->
+            <section>
+                <h2>Escopo do MVP</h2>
+                <ul>
+                    <li class="fragment">Cadastro de Cliente</li>
+                    <li class="fragment">Cadastro de Veículo</li>
+                    <li class="fragment">Criação da Locação de Veículo</li>
+                    <li class="fragment">Cálculo e Encerramento da Locação</li>
+                </ul>
+                <aside class="notes">
+                    <li>SLIDE 12</li>
+                    <li>Sem anotações Importantes</li>
+                </aside>
+            </section>
+
+            <!-- Slide 13: Entregáveis -->
+            <section>
+                <h2>Entregáveis do MVP</h2>
+                <ul>
+                    <li class="fragment">API funcional com rotas REST</li>
+                    <li class="fragment">Banco de dados relacional modelado no Prisma.</li>
+                    <li class="fragment">Documentação detalhada dos endpoints.</li>
+                    <li class="fragment">Testes automatizados de integração e unidade.</li>
+                    <li class="fragment">Repositório público no GitHub.</li>
+                    <li class="fragment">Protótipo do Frontend (Figma/AdminJS)</li>
+                </ul>
+                <aside class="notes">
+                    <li>SLIDE 13</li>
+                </aside>
+            </section>
+
+            <!-- Slide 14: Modelo Banco de Dados -->
+            <section>
+                <h2>Modelo Banco de Dados</h2>
+                <img class="print-BD" src=" imagens/Modelo-BD.png" alt="Banco de Dados">
+                <aside class="notes">
+                    <li>SLIDE 10</li>
+                    <li>Explicar o Modelo do Banco de Dados.
+                </aside>
+                </li>
+            </section>
+
+            <!-- Slide 15: Print Insomnia -->
+            <section data-background="#333333">
+                <h2>Insomnia</h2>
+                <img class="print-destaque" src="imagens/GET Cliente específico.png" alt="Insomnia">
+                <p class="nome">Get Cliente específico</p>
+
+                <aside class="notes">
+                    <li>SLIDE 15</li>
+                    <li>Sem anotações Importantes</li>
+                </aside>
+            </section>
+
+            <!-- Slide 16: Print Erro Insomnia -->
+            <section data-background="#333333">
+                <h2>Insomnia</h2>
+                <img class="print-destaque" src="imagens/Erro Cliente.png" alt="Insomnia">
+                <p class="nome">Erro Get Cliente específico</p>
+
+                <aside class="notes">
+                    <li>SLIDE 16</li>
+                    <li>Sem anotações Importantes</li>
+                </aside>
+            </section>
+
+            <!-- Slide 17: Print Swagger -->
+            <section data-background="#333333">
+                <h2>Swagger</h2>
+                <img class="print-destaque" src="imagens/Swagger-1.png" alt="Insomnia">
+                <p class="nome"></p>
+
+                <aside class="notes">
+                    <li>SLIDE 17</li>
+                    <li>Sem anotações Importantes</li>
+                </aside>
+            </section>
+
+            <!-- Slide 18: GitHub -->
+            <section data-background="#333333">
+                <h2>GitHub</h2>
+                <img class="print-destaque" src="imagens/GitHub.png" alt="GitHub">
+                <p class="nome"></p>
+
+                <aside class="notes">
+                    <li>SLIDE 18</li>
+                    <li>Sem anotações Importantes</li>
+                </aside>
+            </section>
+
+            <!-- Slide 19: GitHub-Projects -->
+            <section data-background="#333333">
+                <h2>GitHub-Projects</h2>
+                <img class="print-destaque" src="imagens/GitHub-Projects.png" alt="GitHub">
+                <p class="nome"></p>
+
+                <aside class="notes">
+                    <li>SLIDE 19</li>
+                    <li>Sem anotações Importantes</li>
+                </aside>
+            </section>
+
+            <!-- Slide 20: FrontEnd-Tela01 -->
+            <section data-background="#333333">
+                <h2>Frontend - Tela01</h2>
+                <img class="print-destaque" src="imagens/Tela 01.png" alt="GitHub">
+                <p class="nome"></p>
+
+                <aside class="notes">
+                    <li>SLIDE 20</li>
+                    <li>Sem anotações Importantes</li>
+                </aside>
+            </section>
+
+            <!-- Slide 21: FrontEnd-Tela02 -->
+            <section>
+                <h2>Frontend - Tela02</h2>
+                <img class="print-destaque" src="imagens/Tela 02.png" alt="GitHub">
+                <p class="nome"></p>
+
+                <aside class="notes">
+                    <li>SLIDE 21</li>
+                    <li>Sem anotações Importantes</li>
+                </aside>
+            </section>
+
+            <!-- Slide 22: FrontEnd-Tela03 -->
+            <section>
+                <h2>Frontend - Tela03</h2>
+                <img class="print-destaque" src="imagens/Tela 03.png" alt="GitHub">
+                <p class="nome"></p>
+
+                <aside class="notes">
+                    <li>SLIDE 22</li>
+                    <li>Sem anotações Importantes</li>
+                </aside>
+            </section>
+
+            <!-- Slide 23: FrontEnd-Tela03 -->
+            <section>
+                <h2>Frontend - Tela03</h2>
+                <img class="print-destaque" src="imagens/Tela 04.png" alt="GitHub">
+                <p class="nome"></p>
+
+                <aside class="notes">
+                    <li>SLIDE 23</li>
+                    <li>Sem anotações Importantes</li>
+                </aside>
+            </section>
+
+            <!-- Slide xx: XXXXXXXXXXX -->
+            <section>
+                <h2><u>Equipe do Projeto</u></h2>
+                <div class="container">
+                    <div class="dev">
+                        <img class="dev1" data-background-size="80%" src="imagens/Final-Jorge-2.png"
+                            alt="Jorge Siqueira">
+                        <p class="nome">Jorge Eduardo</p>
+                    </div>
+                    <div class="dev">
+                        <img class="dev1" src="imagens/Final-Jonathan-2.png" alt="Jonathan">
+                        <p class="nome">Jonathan</p>
+                    </div>
+                    <br>
+                </div>
+            </section>
+
+            <!-- Slide 10: Perguntas -->
+            <section data-background="#333333">
+                <h2>Dúvidas</h2>
+                <img src="imagens/Dúvidas.png" alt="Pessoa pensativa com um semblante de dúvida.">
+                <br><br>
+            </section>
+
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.2.1/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.2.1/plugin/highlight/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.2.1/plugin/notes/notes.min.js"></script>
+
+    <script>
+        // Assumindo que você está usando a sintaxe clássica de CDN, 
+        // os objetos globais (como RevealHighlight, RevealNotes) 
+        // são criados automaticamente quando o script é carregado.
+
+        Reveal.initialize({
+            hash: true,
+            plugins: [
+                RevealHighlight,
+                RevealNotes // <-- ADICIONE ESTA LINHA
+            ],
+            highlight: { highlightOnLoad: true }
+        });
+    </script>
+</body>
+
+</html>

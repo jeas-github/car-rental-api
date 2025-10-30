@@ -1,0 +1,56 @@
+=========================================RENTAL_POINT
+OK  // Rota para listar todos os Pontos de Locação (Rental Points)
+
+OK  // Rota para listar apenas um Ponto de Locação (Rental Point) pelo ID
+
+OK  // Rota para criar um novo Ponto de Locação (Rental Point)
+
+OK  // Rota para editar um Ponto de Locação pelo ID (PUT) (TOTAL)
+
+OK  // Rota para editar um Ponto de Locação pelo ID (PATCH) (PARCIAL)
+
+OK  // Rota para deletar um ponto de locação
+
+=========================================CAR
+
+OK  // Rota para listar todos os carros
+
+OK  // Rota para listar apenas um carro (Car) pelo ID
+
+OK  // Rota para criar um novo carro
+
+OK  // Rota para editar um Carro pelo ID (PUT) (TOTAL)
+
+OK  // Rota para editar um Carro pelo ID (PATCH) (PARCIAL)
+
+OK // Rota para deletar um Carro pelo ID
+
+==========================================CLIENT 
+
+OK   // Rota para listar todos os Clientes
+
+OK   // Rota para listar apenas um Cliente pelo ID
+
+OK   // Rota para criar um novo Cliente
+
+OK   // Rota para editar um Cliente pelo ID (PUT) (TOTAL)
+
+OK   // Rota para editar um Cliente pelo ID (PATCH) (PARCIAL)
+
+OK   // Rota para deletar um Cliente pelo ID
+
+===========================================RENTAL
+
+OK   // Rota para listar todas as Locações
+
+OK   // Rota para listar apenas uma Locação pelo ID
+
+TESTAR   // Rota para criar uma nova Locação
+
+   // Rota para editar uma Locação pelo ID (PUT) (TOTAL)
+
+   // Rota para editar uma Locação pelo ID (PATCH) (PARCIAL)
+
+   // Rota para deletar uma Locação pelo ID
+
+===================================================

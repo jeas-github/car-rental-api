@@ -1,0 +1,91 @@
+### 1. Definição de Discovery do Projeto
+
+O **Discovery do Projeto** (ou *Product Discovery*) é a etapa inicial do ciclo de desenvolvimento de software que busca **explorar, compreender e validar o problema que o produto pretende resolver antes de construir a solução**.[1]
+Seu objetivo é reduzir riscos — de negócio, de usabilidade e técnicos — garantindo que o MVP entregue **valor real ao usuário-alvo e seja viável tecnicamente**.  
+No contexto de um **MVP de API para Locação de Veículos**, o Discovery define o **propósito da API**, quais **entidades** são essenciais (`Client`, `Car`, `RentalPoint`, `Rental`) e quais **processos devem ser priorizados**, como cadastro de clientes, controle de disponibilidade de veículos e gerenciamento de locações.  
+Essa fase também serve para **validar o stack tecnológico** (Node.js, Fastify, Prisma ORM, MySQL), confirmando que ele é adequado para escalar e manter o produto de forma eficiente.
+
+***
+
+### 2. Passo a Passo do Discovery Focado na API
+
+**Etapa 1 – Entendimento do Problema e Contexto:**  
+Mapeie a **dor principal** do público-alvo: administradoras de frotas ou empresas de locação que enfrentam dificuldade em controlar clientes, pontos de retirada/devolução e status de veículos.  
+Identifique também stakeholders (operadores, clientes, desenvolvedores) e descreva as falhas de processos manuais atuais (ex.: inconsistência em registros de locação).
+
+**Etapa 2 – Definição de Público-Alvo e Objetivos do MVP:**  
+O público-alvo primário é a **empresa operadora de locação**, enquanto os clientes são usuários secundários.  
+O Discovery deve definir o objetivo central do MVP: **oferecer uma API robusta e documentada** que permita gerenciar veículos, pontos e locações com rastreabilidade e confiabilidade mínima viável.
+
+**Etapa 3 – Mapeamento de Domínio e Entidades:**  
+Use o arquivo `schema.prisma` como base técnica.[1]
+Valide se as entidades essenciais e seus relacionamentos cobrem as operações críticas:
+- `Client`: cadastro e autenticação  
+- `Car`: disponibilidade e tarifas  
+- `RentalPoint`: pontos de coleta e devolução  
+- `Rental`: fluxo de locação (status pendente, ativo, concluído, cancelado)  
+
+Essa validação garante que o escopo do MVP é mínimo, porém funcional.
+
+**Etapa 4 – Planejamento de Requisitos e Prioridades:**  
+Liste os **casos de uso** essenciais:  
+- Criar e atualizar clientes  
+- Registrar carros e controlar status  
+- Criar uma locação (definindo veículo, cliente e pontos)  
+- Atualizar status da locação (pendente → ativo → concluído)  
+
+Priorize as rotas da API em ordem de impacto e complexidade (CRUD simples antes de fluxos compostos).
+
+**Etapa 5 – Validação Técnica e Riscos:**  
+Confirme a viabilidade técnica do stack:  
+- **Fastify** para performance e rotas leves  
+- **Prisma ORM** para modelar os relacionamentos complexos de locações  
+- **MySQL** pela estabilidade relacional  
+- **Zod, ESLint e Swagger/OpenAPI** para tipos, padronização e documentação de endpoints.  
+Defina riscos e mitigadores (ex.: otimização de queries, segurança via autenticação JWT).
+
+**Etapa 6 – Teste e Feedback Pré-Desenvolvimento:**  
+Monte um protótipo funcional de endpoints no **Insomnia** e valide com potenciais usuários internos (ex.: gerente de frota).  
+Colete feedback sobre utilidade, clareza de documentação e fluxo das operações antes do desenvolvimento completo.
+
+***
+
+### 3. Estrutura de Slides da Apresentação de Discovery
+
+1. **Título e Contexto do Projeto**  
+   - Nome do MVP: Sistema de Locação de Veículos  
+   - Breve introdução e objetivos do projeto
+
+2. **O que é Discovery do Projeto**  
+   - Conceito e importância no ciclo de desenvolvimento  
+   - Foco em redução de riscos e alinhamento com o MVP
+
+3. **Problema e Dor do Usuário**  
+   - Dificuldades enfrentadas por empresas de locação  
+   - Impactos de processos manuais e falta de integração
+
+4. **Público-Alvo e Oportunidade**  
+   - Quem é o usuário principal (administrador do sistema)  
+   - Benefícios esperados com a API
+
+5. **Objetivos do MVP e Escopo Técnico**  
+   - Escopo mínimo com as 4 entidades do `schema.prisma`  
+   - Processos essenciais do fluxo de locação
+
+6. **Modelagem e Relacionamentos (Visão Prisma)**  
+   - Diagrama com `Client`, `Car`, `RentalPoint`, `Rental`  
+   - Descrição breve das relações e enums de status
+
+7. **Stack Tecnológico e Justificativa Técnica**  
+   - Node.js, Fastify, Prisma, MySQL, Zod, Swagger, AdminJS  
+   - Argumentos de performance, produtividade e manutenção
+
+8. **Riscos e Validações**  
+   - Desafios previstos e como serão mitigados  
+   - Testes iniciais com Insomnia e documentação via Swagger
+
+9. **Conclusões e Próximos Passos**  
+   - Síntese do aprendizado no Discovery  
+   - Etapas seguintes: planejamento e desenvolvimento dos endpoints
+
+[1](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/91493666/22ee1e43-af9b-4af1-b8a5-3ef0f1edc8d1/schema.prisma)
